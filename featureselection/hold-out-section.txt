@@ -1,0 +1,63 @@
+
+\subsection{Termination Based on a Dedicated Tuning Fold}
+\label{SectionFeatureSelectionOnTuningFold}
+
+The previous section attempted to improve generalisation by separating subjects for training and test. However, to make feature selection avoid. 
+Given the seven seen subjects used for feature selection and regressor training, we randomly select a single subject as a feature selection tuning fold. We perform the standard \ac{SBE} on the remaining six subjects, which are treated as six folds. At each iteration of feature select, the performance computed on the feature selection check set using the current set of features. The performance is stored for later use. The feature selection is run until there is only single feature remaining. The number of iterations giving the best performance on the check set is taken as the optimal number of features. We then use the above method to do another feature selection search on all seven seen subjects, terminating at the computed optimal number of features. A regressor can then be trained on the 7 seen subjects and the performance can be evaluated on unseen data. The resulting performance can then be compared to results in previous chapters on NVC regression.
+
+Results for a single subject in GBR agree:
+
+\includegraphics[width = 0.49 \columnwidth]{featureselection/temp-GBR-fs-term-agree-test1008-check3008.png}
+
+The optimal features in this example is 147, while for this subject's optimal (known by peeking at the test performance plot) is 43. However, slightly overestimating the required number of features is probably not a problem and we can realize reasonable performances gains.
+
+\begin{table}[htb]
+\centering
+\caption{Performance comparison of various termination criteria. The highlighted column corresponds to peak performance of terminating feature selection based on a person independent performance tuning fold (Section \ref{SectionFeatureSelectionOnTuningFold}).}
+\begin{tabular}{ | c | c | c | c | c | }
+\hline
+Area & NVC       & \cellcolor[gray]{0.8}Person      & Person      & Multi- \\
+     & Category  & \cellcolor[gray]{0.8}Independent & Independent & Person \\
+     & Category  & \cellcolor[gray]{0.8}Folds       & Folds       & Folds \\
+\hline
+Hold Out    & & \cellcolor[gray]{0.8} & & \\
+Tuning Fold & & \cellcolor[gray]{0.8}Yes & No & No \\ 
+\hline
+GBR & Agree      & \cellcolor[gray]{0.8}0.492 & 0.492 & 0.523\\
+GBR & Question   & \cellcolor[gray]{0.8}0.369 & 0.341 & 0.385\\
+GBR & Thinking   & \cellcolor[gray]{0.8}0.560 & 0.581 & 0.556\\
+GBR & Understand & \cellcolor[gray]{0.8}0.618 & 0.599 & 0.605\\
+\hline
+IND & Agree      & \cellcolor[gray]{0.8}0.637 & 0.571 & 0.600\\
+IND & Question   & \cellcolor[gray]{0.8}0.522 & 0.522 & 0.458\\
+IND & Thinking   & \cellcolor[gray]{0.8}0.574 & 0.554 & 0.588\\
+IND & Understand & \cellcolor[gray]{0.8}0.611 & 0.487 & 0.498\\
+\hline
+KEN & Agree      & \cellcolor[gray]{0.8}0.492 & 0.630 & 0.604\\
+KEN & Question   & \cellcolor[gray]{0.8}0.423 & 0.393 & 0.358\\
+KEN & Thinking   & \cellcolor[gray]{0.8}0.572 & 0.598 & 0.600\\
+KEN & Understand & \cellcolor[gray]{0.8}0.606 & 0.591 & 0.595\\
+\hline
+All & Average    & \cellcolor[gray]{0.8}0.540 & 0.530 & 0.531\\
+\hline
+\end{tabular}
+\label{TableFeatureSelectionTuningFold}
+\end{table}
+
+%\section{Visualising Location of Features Relevant to NVC Recognition}
+%I plan to do this, if I have time.
+
+Compared to the method described in section \ref{SectionPersonIndependentFeatureSelection}, this nearly doubles the amount of computation required. Performance might be improved by, instead of using a random subject as the check set, each subject being used as the check set in turn and an average optimal number of features can be computed. However, this approach is currently beyond our available computational resources.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width = 0.49 \columnwidth]{featureselection/alg-gbr-agree.png}
+\includegraphics[width = 0.49 \columnwidth]{featureselection/alg-gbr-question.png}
+
+\includegraphics[width = 0.49 \columnwidth]{featureselection/alg-gbr-thinking.png}
+\includegraphics[width = 0.49 \columnwidth]{featureselection/alg-gbr-understand.png}
+\caption{Feature selection (training) performance and testing performance on unseen data. GBR culture. TL: Agree, TR: Question, BL: Thinking, BR: Understand.}
+\label{FigureFeatureSelectPlots}
+\end{figure}
+
+

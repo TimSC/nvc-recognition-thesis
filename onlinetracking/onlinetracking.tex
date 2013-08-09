@@ -1,0 +1,65 @@
+
+\def\meshpos{\textbf{p}}
+\def\templatepos{\textbf{a}}
+
+\chapter[Online Tracking]{Online Tracking}
+\label{ChapterOnlineTracking}
+
+\section{Introduction}
+
+\section{Related Research}
+
+\subsection{Boston Head Pose Corpus}
+
+\section{Description of System}
+
+\subsection{Initialisation}
+
+\subsection{Head Pose Estimation by LM}
+\label{SectionLmHeadPose}
+
+Original idea: \cite{Liu2000}
+
+\begin{equation}
+\mathcal{F}(\textbf{R},\textbf{t}) = \displaystyle\sum_{i=1}^{\numFeatures} { ||\textbf{\templatepos}_{i} - proj(\textbf{R} \textbf{\meshpos}_i + \textbf{t})||^2 }
+\label {LmPoseEquation}
+\end{equation}
+
+\subsection{Online Learning}
+
+\subsection{Tracking with Multiple Templates}
+
+\subsection{Estimate pose using Weighted RANSAC LM}
+
+\subsection{Update tracker positions}
+
+\section{Experimental Results}
+
+\subsection{Head Pose Estimation}
+
+\subsection{Facial Feature Tracking on Boston}
+
+\subsection{Facial Feature Tracking on TwoTalk?}
+
+\thesiscomment{Do we need to do these experiments?}
+
+\section{Discussion}
+
+\thesisstatement{Some features accurately track over a wider pose range than others}
+
+\thesisstatement{Banks of pose specific head trackers can be used to extend the pose range that can be accurately tracked.}
+
+\thesisstatement{The proposed online learning system can track faces accurately over a wide range of poses for smooth head motion.}
+
+\thesisstatement{Poor initialisation of head pose in the online tracking system, often caused by difference face shapes, causes poor performance throughout the video.}
+
+\thesisstatement{Online tracking system works on smooth motion sequences (Boston) but fails on unconstrained video.}
+
+Why we don't use online tracking system later in the thesis?
+
+\thesisstatement{LP Flocks are better than Online Tracker for TwoTalk videos.}
+
+
+\section{Conclusions}
+
+DISCUSS: Say how this is still an unsolved problem and neither this nor LPs fully address it

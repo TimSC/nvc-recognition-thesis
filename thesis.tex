@@ -1,0 +1,502 @@
+\documentclass[11pt]{book}  % 11 point font size is recommended
+
+% Non-CVSSP members only: If you want to make your thesis fatter, you can
+% print single-sided by adding "oneside" to the documentclass options:
+%\documentclass[oneside,11pt]{book} 
+
+\usepackage{a4,graphicx,eimthesis} 
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{acronym}
+\usepackage[table]{xcolor} %Table colours for highlights
+\usepackage[cmex10]{amsmath}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{nomencl}
+\usepackage{quotchap}
+\usepackage[toc]{appendix}
+\usepackage{wasysym} %For male and female symbols
+%\usepackage{draftwatermark}
+
+%\SetWatermarkText{DRAFT}
+%\SetWatermarkLightness{0.9}
+%\SetWatermarkScale{4}
+
+\acrodef{NVC}{Non-Verbal Communication}
+\acrodef{FACS}{Facial Action Coding System}
+\acrodef{SVR}{Support Vector Regression}
+\acrodef{SVM}{Support Vector Machine}
+\acrodef{RBF}{Radial Basis Function}
+\acrodef{AU}{Action Unit}
+\acrodef{IP}{Internet Protocol}
+\acrodef{UK}{United Kingdom}
+\acrodef{GBR}{Great Britain}
+\acrodef{US}{United States}
+\acrodef{SVM}{Support Vector Machine}
+\acrodef{ICA}{Independent Component Analysis}
+\acrodef{LMA}{Levenberg--Marquardt Algorithm}
+\acrodef{LBP}{Local Binary Pattern}
+\acrodef{PCA}{Principal Component Analysis}
+\acrodef{CKD}{Cohn-Kanade AU Coded Facial Expression Database}
+\acrodef{HMM}{Hidden Markov Model}
+\acrodef{ROC}{Receiver Operating Characteristic}
+\acrodef{MIL}{Multiple Instance Learning}
+\acrodef{URL}{Uniform Resource Locator}
+\acrodef{LP}{Linear Predictor}
+\acrodef{ASM}{Active Shape Model}
+\acrodef{AAM}{Active Appearance Model}
+\acrodef{HCRF}{Hidden Conditional Random Field}
+\acrodef{iHCRF}{Infinite Hidden Conditional Random Field}
+\acrodef{CORF}{Conditional Ordinal Random Field}
+\acrodef{NMF}{Non-negative Matrix Factorisation}
+\acrodef{MNN}{Modified Nearest Neighbour}
+\acrodef{LLR}{Logistical Linear Regression}
+\acrodef{CRF}{Conditional Random Field}
+\acrodef{NMF}{Non-negative Matrix Factorization}
+\acrodef{DCT}{Discrete Cosine Transform}
+\acrodef{LPQ}{Local Phase Quantization}
+\acrodef{FLD}{Fisher Linear Discriminant}
+\acrodef{SVDD}{Support Vector Data Description}
+\acrodef{EM}{Expectation Maximization}
+\acrodef{kNN}{k-Nearest Neighbour}
+\acrodef{MKL}{Multiple Kernel Learning}
+\acrodef{MSA}{MultiScale Autoconvolution}
+\acrodef{LDA}{Linear Discriminant Analysis}
+\acrodef{RVM}{Relevance Vector Machine}
+\acrodef{DBN}{Dynamic Bayesian Network}
+\acrodef{HCI}{Human--Computer Interaction}
+\acrodef{SBE}{Sequential Backward Elimination}
+\acrodef{SFS}{Sequential Forward Selection}
+\acrodef{ML}{Machine Learning}
+\acrodef{KLT}{Kanade-Lucas-Tomasi}
+\acrodef{SAL}{Sensitive Artificial Listener}
+\acrodef{LGBP}{Local Gabor Binary Pattern}
+\acrodef{SIFT}{Scale-invariant Feature Transform}
+\acrodef{AUC}{Area Under Curve}
+\acrodef{TOP}{Three Orthogonal Planes}
+\acrodef{CLM}{Constrained Local Model}
+\def\etal{et al. }
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\newcommand{\diffblock}{}
+
+\def\featureGeneration{feature extraction }
+\def\featureGenerationComma{\featureGeneration, }
+\def\FeatureGeneration{Feature extraction }
+\def\FeatureGenerationTitle{Feature Extraction }
+\def\dataFusion{feature extraction }
+\def\dataFusionBracketed{(feature extraction) }
+\def\DataFusion{Feature extraction }
+\def\continuous{dimensional, continuous valued }
+\def\culturallySpecific{culturally specific }
+
+%Not bold, lower case (scalars)
+\def\nvcCategory{c} %category label, discrete
+\def\numAnnotators{d} %Integer, number of annotators overall
+\def\numTemporalWindows{e}
+\def\frameNum{f}
+\def\lbpgridwidth{g} %Integer
+\def\lbpgridheight{h} % Integer
+\def\temporalWindowSize{k}
+%\def\temporalWindowPosition{l}
+\def\clipId{m} %Integer
+%n
+\def\numClips{o} %integer
+\def\numSeqFrames{p} %integer
+\def\numThresholds{q}
+\def\numClipFrames{r}
+\def\numFeatures{s}
+\def\timeOffset{t}
+\def\clipFeatureDigestVal{u} %scalar
+\def\trustedThreshold{w}
+%x reserved
+%y reserved
+%z reserved
+
+%Bold, lower case (vectors)
+%\def\templatepos{\textbf{a}}
+
+\def\crossCategoryRatings{\textbf{d}}
+\def\numRatingsForAnnotator{\textbf{e}}
+\def\frameFeature{\textbf{f}} %Vector of scalars
+\def\polyConsts{\textbf{g}} %Vector of scalars
+\def\componentMean{\textbf{m}} %vector of scalars
+\def\trackerWeightNorm{\textbf{n}}
+\def\weightSingleFeature{\textbf{o}}
+\def\systemPerformance{\textbf{p}}
+\def\ratingOfClip{\textbf{r}} %rating on a single clip by one annotator
+\def\annotatorOfRating{\textbf{s}} %rating on a single clip by one annotator
+\def\headTranslation{\textbf{t}} %vector of scalars
+\def\componentVariance{\textbf{v}} %vector of scalars
+\def\numAnnotatorsOnClip{\textbf{z}} %vector of integers
+
+%Not bold, upper case
+
+%reserve C for SVM parameters
+%A reserved
+%B reserved
+\def\cultureList{C}
+\def\clearClipSet{E}
+\def\lengthofclip{L} %set of scalars
+\def\setCategories{N}
+\def\allClipSet{V}
+\def\polyFunc{P}
+\def\workerSet{W}
+\def\clipIndexAnnotated{F}
+
+%Bold upper case (matrix)
+\def\approxaffine{\textbf{A}} %2D matrix
+\def\clipFeature{\textbf{B}}
+\def\clipConcensus{\textbf{C}} %2d matrix
+\def\dyadicCorrelation{\textbf{D}}
+\def\clipFeatureDigest{\textbf{E}}
+\def\frameFeatureMatrix{\textbf{F}}
+\def\globalFeature{\textbf{G}}
+\def\headMeshPos{\textbf{H}} %2D matrix
+\def\filteredAnnotation{\textbf{I}}
+\def\temporalWindowFeature{\textbf{J}} %2D Matrix
+\def\globalAnnotation{\textbf{K}}
+\def\slidingWindowVar{\textbf{L}} %3D matrix
+\def\normalisedTracking{\textbf{M}} %Matrix 2D scalar
+\def\rawAnnotation{\textbf{N}} %vector of sets?
+\def\thresholdVal{\textbf{O}} %2d matrix of scalars
+\def\trackerWeight{\textbf{P}}
+\def\discretisedFeatures{\textbf{Q}}
+\def\headRotation{\textbf{R}} %2D matrix
+\def\temporalFeature{\textbf{S}} %2D matrix
+\def\rawTracking{\textbf{T}} %Matrix 2D, scalar, tracking on a single frame
+\def\robustAnnotation{\textbf{U}}
+\def\singleAnnotatorRatings{\textbf{V}} %Matrix containing ratings for one annotator
+\def\temporalWindow{\textbf{W}} %3D matrix
+
+%Greek, lowercase, not bold
+
+\def\currentFeatureSet{\boldsymbol\alpha} %Alpha
+\def\tempFeatureSet{\boldsymbol\beta} %beta
+%Gamma
+%delta
+\def\framesInCorpus{\epsilon}%epsilon
+%Zeta
+\def\numToRemoveInMask{\eta} %Eta
+\def\cultureSelect{\theta}
+%Iota
+\def\numTrackers{\kappa} %scalar %kappa
+\def\lpbWord{\lambda}
+\def\modeFunc{\mu} %Mu
+\def\correlTemp{\nu}%Nu
+%Xi
+%omicron
+%reserved %Pi
+\def\correlFunc{\rho} %Rho
+%reserved %Sigma
+\def\projFunc{\tau} %Tau, %projection function
+%upsilon
+\def\varFunc{\phi}%Phi
+\def\rawTrackingHomog{\boldsymbol\chi}%Chi
+\def\modelFitError{\psi}%Psi
+\def\numFeaturesInMask{\omega} %Omega
+
+\def\temporalFeatPlural{statistical features}
+\def\temporalFeatPluralStart{Statistical features}
+\def\temporalFeatPluralCap{Statistical Features}
+\def\temporalFeatSingle{statistical feature}
+\def\temporalFeatSingleStart{Statistical feature}
+\def\temporalFeatSingleCap{Statistical Feature}
+
+%Greek uppercase
+
+%Alpha
+%beta
+%Gamma
+%delta
+%epsilon
+%Zeta
+%Eta
+%Theta
+%Iota
+%kappa
+%Lambda
+%Mu
+%Nu
+%Xi
+%Omicron
+%Pi
+%Rho
+%Sigma
+%Tau
+%upsilon
+%Phi
+%Chi
+%Psi
+%Omega
+
+%\setcounter{secnumdepth}{2}  % sets the depth of sections that get numbered
+%\setcounter{tocdepth}{3}     % sets the depth of sections in Contents
+%  N.B. tocdepth should always be 1 more than secnumdepth
+
+% these 3 lines are compulsory:
+\title{On the Automatic Recognition of Facial Non-verbal Communication Meaning in Informal, Spontaneous Conversation}
+\author{Tim Sheerman-Chase} \centre{Centre for Vision, Speech and Signal Processing}
+
+\newlogo % Uncomment if you prefer the new logo
+
+% When thesis is submitted, fix publication date using 2 lines like these:
+\renewcommand{\month}{9}
+\renewcommand{\year}{2012}
+
+% Summary, keywords and acknowledgements are compulsory (although they may be
+% empty), but you can put them all in an "\include" file, if you prefer.
+
+\include{abstract}
+
+\keywords{Non-verbal Communication, Annotation, Automatic Recognition, Cultural Factors, Subjective Labels, Crowdsourcing}
+\email{t.sheerman-chase@surrey.ac.uk}
+
+%\introquote{}
+\introquote{
+The living thing did I follow; I walked in the broadest and narrowest paths to learn its nature.
+
+With a hundred-faced mirror did I catch its glance when its mouth was shut, so that its eye might speak unto me. And its eye spake unto me.
+
+\hfill \textit{Friedrich Nietzsche}
+
+Destroy the mind, destroy the body, but you cannot destroy the heart
+
+\hfill \textit{The Smashing Pumpkins}}
+
+\acknowledgements{This work was a challenge to bring to fruition. I was supported and encouraged by many people and I thank them all. While it is impossible list everyone who assisted me, I will mention of a few special people.
+
+To my immediate research team: Andy, Brian, Dumebi, Helen, James, Karel, Liam, Matt, Matt, Nico, Phil, Segun, Simon and Stephen, thanks for our many discussions on technical matters, current affairs and for good times. Also, I am very grateful for the friendship and encouragement of Ash. My research was initiated from the EPSRC funded LiLiR project and I want to extend my gratitude to Richard, Stephen, Barry, Gari, Yuxuan, Jake and Sarah for their useful input and providing direction to this work. I also wish to thank the university staff who assisted this work, particularly Bevis King, James Field, Liz James, Dawn Duke and Shane Dowle.
+
+Thanks goes to my family and particularly to my parents for providing support that cannot be measured. Also, thanks to my old friends (you know who you are, I hope) and new friends Martin, Cemre, Stuart, Rui, Iris, Phil for providing a spot of sunshine. Many professionals helped me keep mind and body together; special thanks to Chris Powell, Philip Bull, Duncan Sellers, Nicole Muller, Dee Ainsworth and Brenda Dilks for your timely help.
+
+Many thanks to Rich Bowden for giving me the opportunity to do research, for providing copious guidance for my own good (most of which I followed) and particularly for how to best communicate my research. His support, persistence and patience during my active work and during my absences was invaluable. Eng-Jon Ong was my scientific guru for the past 5 years and this work would have been impossible without his help.}
+
+% Comment out this line when you want to compile the whole thesis; 
+% otherwise just include chapters you are currently working on:
+%onlinetracking/onlinetracking
+\includeonly{introduction/introduction,litreview/litreview,corpus/corpus,nvcclass/nvcclass,backchannel/backchannel,annotation/annotation,nvcregression/nvcregression,featureselection/featureselection,conclusion/conclusion,appendices} 
+
+\begin{document}
+
+% This inserts the front page, as well as the summary & acknowledgements
+% defined above (a bit like "\maketitle").
+\frontmatter
+\makefront 
+
+\tableofcontents  % include  list of figs. etc. here also, if required
+
+\small
+\listoffigures
+
+\listoftables
+\normalsize
+
+\newpage
+\huge 
+\textbf{List of Symbols and Abbreviations}
+\normalsize
+
+\begin{center}
+\begin{tabular*}{0.75\textwidth}{  c | l  }
+
+$\nvcCategory$		& \acf{NVC} category \\
+$\numAnnotators$	& Number of annotators \\
+$\numTemporalWindows$	& Number of temporal windows \\
+$\frameNum$		& Frame number  \\
+$\lbpgridwidth$		& \ac{LBP} histogram grid width \\
+$\lbpgridheight$	& \ac{LBP} histogram grid height \\
+$\temporalWindowSize$	& Temporal Window size \\
+$\clipId$		& Clip ID number \\
+$\numClips$		& Number of videos in the corpus \\
+$\numSeqFrames$		& Number of frames in original video\\
+$\numThresholds$	& Number of discretisation thresholds \\
+$\numClipFrames$	& Number of frames in a video clip \\
+$\numFeatures$		& Number of feature components\\
+$\timeOffset$		& Time offset \\
+$\clipFeatureDigestVal$	& Clip digest feature value\\
+$\trustedThreshold$	& Threshold for trusted worker subset \\
+\end{tabular*}
+
+\begin{tabular*}{0.75\textwidth}{  c | l  }
+%Bold, lower case (vectors)
+$\crossCategoryRatings$	& Combined ratings for a single annotator \\
+$\numRatingsForAnnotator$	& Number of clips rated by each annotator \\
+$\frameFeature$		& Feature vector based on a single video frame \\
+$\polyConsts$		& Polynomial curve constants \\
+$\componentMean$	& Mean value of feature components \\
+$\trackerWeightNorm$	& Tracker relevance weights \\
+$\weightSingleFeature$	& Performance increase during feature selection \\
+$\systemPerformance$	& Performance during feature selection\\
+$\ratingOfClip$		& Annotator rating of a single video clip \\
+$\annotatorOfRating$	& Annotator index of clip rating \\
+$\headTranslation$	& Head translation\\
+$\componentVariance$	& Variance value of feature components\\
+$\numAnnotatorsOnClip$	& Number of annotators for each clip\\
+\end{tabular*}
+
+\begin{tabular*}{0.75\textwidth}{  c | l  }
+$\cultureList$		& Cultural sets of annotators \\
+$\clearClipSet$		& Set of intense \ac{NVC} examples \\
+$\lengthofclip$		& Length of video clip\\
+$\allClipSet$		& Set of all video clips\\
+$\setCategories$	& Set of \ac{NVC} categories \\
+$\polyFunc$		& Quadratic polynomial function \\
+$\workerSet$		& Set of annotators \\
+
+\end{tabular*}
+
+\begin{tabular*}{0.75\textwidth}{  c | l  }
+$\approxaffine$		& Affine transform to frontal pose\\
+$\clipFeature$		& Feature matrix for a video clip\\
+$\clipConcensus$	& Matrix of filtered consensus annotations\\
+$\dyadicCorrelation$	& Correlation of pairs of features\\
+$\clipFeatureDigest$	& Digest feature matrix for a clip\\
+$\frameFeatureMatrix$	& Feature matrix for original video \\
+$\globalFeature$	& Feature matrix of concatenated original videos\\
+$\headMeshPos$		& Tracker positions in homogeneous coordinates\\
+$\filteredAnnotation$	& Filtered annotation data \\
+$\temporalWindowFeature$& Polynomial curve feature matrix\\
+$\globalAnnotation$	& Cross cultural mean of annotation data \\
+$\slidingWindowVar$	& Variance of features in a sliding window \\
+$\normalisedTracking$	& Normalised tracking \\
+$\rawAnnotation$	& Raw annotation data\\
+$\thresholdVal$		& Discretisation thresholds\\
+$\trackerWeight$	& Relevance weight of trackers\\
+$\discretisedFeatures$	& Discretised clip feature matrix \\
+$\headRotation$		& Head rotation matrix\\
+$\temporalFeature$	& \temporalFeatSingleStart{ }matrix from multiple windows \\
+$\rawTracking$		& Tracking position data \\
+$\robustAnnotation$	& Consensus ratings of trusted annotators\\
+$\singleAnnotatorRatings$ & \ac{NVC} ratings from a single annotator\\
+$\temporalWindow$	& Feature matrix inside temporal window\\
+\end{tabular*}
+
+\begin{tabular*}{0.75\textwidth}{  c | l  }
+$\currentFeatureSet$	& Current set of feature components \\
+$\tempFeatureSet$	& Feature component set for testing \\
+$\framesInCorpus$	& Number of frames in the corpus \\
+$\numToRemoveInMask$	& Number of features to remove in iteration\\
+$\numTrackers$		& Number of trackers\\
+$\modeFunc$		& Statistical mode function\\
+$\correlTemp$		& Variable for correlation computation\\
+$\correlFunc$		& Pearson's correlation function\\
+$\projFunc$		& Camera projection function \\
+$\varFunc$		& Variance function \\
+$\rawTrackingHomog$	& Tracker positions in homogeneous coordinates\\
+$\modelFitError$	& Model fit error\\
+$\numFeaturesInMask$	& Number of feature components in set\\
+
+\end{tabular*}
+\end{center}
+
+\newpage
+
+\begin{center}
+\begin{tabular*}{0.65\textwidth}{  c | l  }
+
+{AAM}&Active Appearance Model\\
+{ASM}&Active Shape Model\\
+{AU}&Action Unit\\
+{AUC}&Area Under Curve\\
+%{CKD}&Cohn-Kanade AU Coded Facial Expression Database\\
+{CLM}&Constrained Local Model\\
+{CORF}&Conditional Ordinal Random Field\\
+{CRF}&Conditional Random Field\\
+{DBN}&Dynamic Bayesian Network\\
+{DCT}&Discrete Cosine Transform\\
+{EM}&Expectation Maximization\\
+{FACS}&Facial Action Coding System\\
+{FLD}&Fisher Linear Discriminant\\
+{GBR}&Great Britain\\
+{HCI}&Human--Computer Interaction\\
+{HCRF}&Hidden Conditional Random Field\\
+{HMM}&Hidden Markov Model\\
+{ICA}&Independent Component Analysis\\
+{iHCRF}&Infinite Hidden Conditional Random Field\\
+{IP}&Internet Protocol\\
+{KLT}&Kanade-Lucas-Tomasi\\
+{kNN}&k-Nearest Neighbour\\
+{LBP}&Local Binary Pattern\\
+{LDA}&Linear Discriminant Analysis\\
+{LGBP}&Local Gabor Binary Pattern\\
+{LLR}&Logistical Linear Regression\\
+{LMA}&Levenberg--Marquardt Algorithm\\
+{LP}&Linear Predictor\\
+{LPQ}&Local Phase Quantization\\
+{MIL}&Multiple Instance Learning\\
+{MKL}&Multiple Kernel Learning\\
+{ML}&Machine Learning\\
+{MNN}&Modified Nearest Neighbour\\
+%\end{tabular*}
+%\end{center}
+%
+%\begin{center}
+%\begin{tabular*}{0.75\textwidth}{  c | l  }
+%{MSA}&MultiScale Autoconvolution\\
+{NMF}&Non-negative Matrix Factorisation\\
+{NVC}&Non-Verbal Communication\\
+{PCA}&Principal Component Analysis\\
+{RBF}&Radial Basis Function\\
+{ROC}&Receiver Operating Characteristic\\
+{RVM}&Relevance Vector Machine\\
+{SAL}&Sensitive Artificial Listener\\
+{SBE}&Sequential Backward Elimination\\
+{SFS}&Sequential Forward Selection\\
+{SIFT}&Scale-invariant Feature Transform\\
+{SVDD}&Support Vector Data Description\\
+{SVM}&Support Vector Machine\\
+{SVR}&Support Vector Regression\\
+{TOP}&Three Orthogonal Planes\\
+{UK}&United Kingdom\\
+%{URL}&Uniform Resource Locator\\
+{US}&United States\\
+
+\end{tabular*}
+\end{center}
+
+\mainmatter
+
+%Unfortunately most people like to pad out their thesis to make it look bigger,
+%so use this line for 1.5 x spacing:
+\renewcommand{\baselinestretch}{1.5}\small\normalsize   
+
+%\newcommand{\thesiscomment}[1]{\colorbox{SkyBlue}{\parbox{0.98 \columnwidth}{#1}}}
+%\newcommand{\thesisstatement}[1]{\colorbox{yellow}{\parbox{0.98 \columnwidth}{#1}}}
+
+%highlight
+%\newcommand{\thesiscomment}[1]{}
+%\newcommand{\thesisstatement}[1]{\colorbox{yellow}{\parbox{0.98 \columnwidth}{#1}}}
+
+%hide comments
+\newcommand{\thesisstatement}[1]{}
+\newcommand{\thesiscomment}[1]{}
+
+% At last you can put in the serious work:
+\include{introduction/introduction}
+\include{litreview/litreview}
+%\include{onlinetracking/onlinetracking}
+\include{corpus/corpus}
+\include{nvcclass/nvcclass}
+\include{backchannel/backchannel}
+\include{annotation/annotation}
+\include{nvcregression/nvcregression}
+\include{featureselection/featureselection}
+\include{conclusion/conclusion}
+
+%\appendix
+\include{appendices}
+
+% use this line if you want bibs to appear in table of contents:
+\backmatter
+\addcontentsline{toc}{chapter}{Bibliography} 
+
+%\nocite{*}
+{
+\scriptsize
+\bibliography{references} % put your favourite Bibtex archive references here
+\bibliographystyle{plain}
+\normalsize
+}
+\end{document}
+
