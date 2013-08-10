@@ -1,0 +1,55 @@
+<acros>
+<acro><k>NVC</k><v>Non-Verbal Communication</v></acro>
+<acro><k>FACS</k><v>Facial Action Coding System</v></acro>
+<acro><k>SVR</k><v>Support Vector Regression</v></acro>
+<acro><k>SVM</k><v>Support Vector Machine</v></acro>
+<acro><k>RBF</k><v>Radial Basis Function</v></acro>
+<acro><k>AU</k><v>Action Unit</v></acro>
+<acro><k>IP</k><v>Internet Protocol</v></acro>
+<acro><k>UK</k><v>United Kingdom</v></acro>
+<acro><k>GBR</k><v>Great Britain</v></acro>
+<acro><k>US</k><v>United States</v></acro>
+<acro><k>SVM</k><v>Support Vector Machine</v></acro>
+<acro><k>ICA</k><v>Independent Component Analysis</v></acro>
+<acro><k>LMA</k><v>Levenberg--Marquardt Algorithm</v></acro>
+<acro><k>LBP</k><v>Local Binary Pattern</v></acro>
+<acro><k>PCA</k><v>Principal Component Analysis</v></acro>
+<acro><k>CKD</k><v>Cohn-Kanade AU Coded Facial Expression Database</v></acro>
+<acro><k>HMM</k><v>Hidden Markov Model</v></acro>
+<acro><k>ROC</k><v>Receiver Operating Characteristic</v></acro>
+<acro><k>MIL</k><v>Multiple Instance Learning</v></acro>
+<acro><k>URL</k><v>Uniform Resource Locator</v></acro>
+<acro><k>LP</k><v>Linear Predictor</v></acro>
+<acro><k>ASM</k><v>Active Shape Model</v></acro>
+<acro><k>AAM</k><v>Active Appearance Model</v></acro>
+<acro><k>HCRF</k><v>Hidden Conditional Random Field</v></acro>
+<acro><k>iHCRF</k><v>Infinite Hidden Conditional Random Field</v></acro>
+<acro><k>CORF</k><v>Conditional Ordinal Random Field</v></acro>
+<acro><k>NMF</k><v>Non-negative Matrix Factorisation</v></acro>
+<acro><k>MNN</k><v>Modified Nearest Neighbour</v></acro>
+<acro><k>LLR</k><v>Logistical Linear Regression</v></acro>
+<acro><k>CRF</k><v>Conditional Random Field</v></acro>
+<acro><k>NMF</k><v>Non-negative Matrix Factorization</v></acro>
+<acro><k>DCT</k><v>Discrete Cosine Transform</v></acro>
+<acro><k>LPQ</k><v>Local Phase Quantization</v></acro>
+<acro><k>FLD</k><v>Fisher Linear Discriminant</v></acro>
+<acro><k>SVDD</k><v>Support Vector Data Description</v></acro>
+<acro><k>EM</k><v>Expectation Maximization</v></acro>
+<acro><k>kNN</k><v>k-Nearest Neighbour</v></acro>
+<acro><k>MKL</k><v>Multiple Kernel Learning</v></acro>
+<acro><k>MSA</k><v>MultiScale Autoconvolution</v></acro>
+<acro><k>LDA</k><v>Linear Discriminant Analysis</v></acro>
+<acro><k>RVM</k><v>Relevance Vector Machine</v></acro>
+<acro><k>DBN</k><v>Dynamic Bayesian Network</v></acro>
+<acro><k>HCI</k><v>Human--Computer Interaction</v></acro>
+<acro><k>SBE</k><v>Sequential Backward Elimination</v></acro>
+<acro><k>SFS</k><v>Sequential Forward Selection</v></acro>
+<acro><k>ML</k><v>Machine Learning</v></acro>
+<acro><k>KLT</k><v>Kanade-Lucas-Tomasi</v></acro>
+<acro><k>SAL</k><v>Sensitive Artificial Listener</v></acro>
+<acro><k>LGBP</k><v>Local Gabor Binary Pattern</v></acro>
+<acro><k>SIFT</k><v>Scale-invariant Feature Transform</v></acro>
+<acro><k>AUC</k><v>Area Under Curve</v></acro>
+<acro><k>TOP</k><v>Three Orthogonal Planes</v></acro>
+<acro><k>CLM</k><v>Constrained Local Model</v></acro>
+</acros>

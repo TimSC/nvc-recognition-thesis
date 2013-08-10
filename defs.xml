@@ -1,0 +1,126 @@
+<defs>
+<def><k>etal</k><v>et al. </v></def>
+<def><k>featureGeneration</k><v>feature extraction </v></def>
+<def><k>featureGenerationComma</k><v>\featureGeneration, </v></def>
+<def><k>FeatureGeneration</k><v>Feature extraction </v></def>
+<def><k>FeatureGenerationTitle</k><v>Feature Extraction </v></def>
+<def><k>dataFusion</k><v>feature extraction </v></def>
+<def><k>dataFusionBracketed</k><v>(feature extraction) </v></def>
+<def><k>DataFusion</k><v>Feature extraction </v></def>
+<def><k>continuous</k><v>dimensional, continuous valued </v></def>
+<def><k>culturallySpecific</k><v>culturally specific </v></def>
+
+<!--Not bold, lower case (scalars)-->
+<def><k>nvcCategory</k><v>c</v></def> <!--category label, discrete-->
+<def><k>numAnnotators</k><v>d</v></def> <!--Integer, number of annotators overall-->
+<def><k>numTemporalWindows</k><v>e</v></def>
+<def><k>frameNum</k><v>f</v></def>
+<def><k>lbpgridwidth</k><v>g</v></def> <!--Integer-->
+<def><k>lbpgridheight</k><v>h</v></def> <!-- Integer-->
+<def><k>temporalWindowSize</k><v>k</v></def>
+<def><k>temporalWindowPosition</k><v>l</v></def>
+<def><k>clipId</k><v>m</v></def> <!--Integer-->
+
+<def><k>numClips</k><v>o</v></def> <!--integer-->
+<def><k>numSeqFrames</k><v>p</v></def> <!--integer-->
+<def><k>numThresholds</k><v>q</v></def>
+<def><k>numClipFrames</k><v>r</v></def>
+<def><k>numFeatures</k><v>s</v></def>
+<def><k>timeOffset</k><v>t</v></def>
+<def><k>clipFeatureDigestVal</k><v>u</v></def> <!--scalar-->
+<def><k>trustedThreshold</k><v>w</v></def>
+<!--x reserved-->
+<!--y reserved-->
+<!--z reserved-->
+
+<!--Bold, lower case (vectors)-->
+<!--<def><k>templatepos</k><v><b>a</b></v></def>-->
+
+<def><k>crossCategoryRatings</k><v><b>d</b></v></def>
+<def><k>numRatingsForAnnotator</k><v><b>e</b></v></def>
+<def><k>frameFeature</k><v><b>f</b></v></def> <!--Vector of scalars-->
+<def><k>polyConsts</k><v><b>g</b></v></def> <!--Vector of scalars-->
+<def><k>componentMean</k><v><b>m</b></v></def> <!--vector of scalars-->
+<def><k>trackerWeightNorm</k><v><b>n</b></v></def>
+<def><k>weightSingleFeature</k><v><b>o</b></v></def>
+<def><k>systemPerformance</k><v><b>p</b></v></def>
+<def><k>ratingOfClip</k><v><b>r</b></v></def> <!--rating on a single clip by one annotator-->
+<def><k>annotatorOfRating</k><v><b>s</b></v></def> <!--rating on a single clip by one annotator-->
+<def><k>headTranslation</k><v><b>t</b></v></def> <!--vector of scalars-->
+<def><k>componentVariance</k><v><b>v</b></v></def> <!--vector of scalars-->
+<def><k>numAnnotatorsOnClip</k><v><b>z</b></v></def> <!--vector of integers-->
+
+<!--Not bold, upper case-->
+
+<!--reserve C for SVM parameters-->
+<!--A reserved-->
+<!--B reserved-->
+<def><k>cultureList</k><v>C</v></def>
+<def><k>clearClipSet</k><v>E</v></def>
+<def><k>lengthofclip</k><v>L</v></def> <!--set of scalars-->
+<def><k>setCategories</k><v>N</v></def>
+<def><k>allClipSet</k><v>V</v></def>
+<def><k>polyFunc</k><v>P</v></def>
+<def><k>workerSet</k><v>W</v></def>
+<def><k>clipIndexAnnotated</k><v>F</v></def>
+
+<!--Bold upper case (matrix)-->
+<def><k>approxaffine</k><v><b>A</b></v></def> <!--2D matrix-->
+<def><k>clipFeature</k><v><b>B</b></v></def>
+<def><k>clipConcensus</k><v><b>C</b></v></def> <!--2d matrix-->
+<def><k>dyadicCorrelation</k><v><b>D</b></v></def>
+<def><k>clipFeatureDigest</k><v><b>E</b></v></def>
+<def><k>frameFeatureMatrix</k><v><b>F</b></v></def>
+<def><k>globalFeature</k><v><b>G</b></v></def>
+<def><k>headMeshPos</k><v><b>H</b></v></def> <!--2D matrix-->
+<def><k>filteredAnnotation</k><v><b>I</b></v></def>
+<def><k>temporalWindowFeature</k><v><b>J</b></v></def> <!--2D Matrix-->
+<def><k>globalAnnotation</k><v><b>K</b></v></def>
+<def><k>slidingWindowVar</k><v><b>L</b></v></def> <!--3D matrix-->
+<def><k>normalisedTracking</k><v><b>M</b></v></def> <!--Matrix 2D scalar-->
+<def><k>rawAnnotation</k><v><b>N</b></v></def> <!--vector of sets?-->
+<def><k>thresholdVal</k><v><b>O</b></v></def> <!--2d matrix of scalars-->
+<def><k>trackerWeight</k><v><b>P</b></v></def>
+<def><k>discretisedFeatures</k><v><b>Q</b></v></def>
+<def><k>headRotation</k><v><b>R</b></v></def> <!--2D matrix-->
+<def><k>temporalFeature</k><v><b>S</b></v></def> <!--2D matrix-->
+<def><k>rawTracking</k><v><b>T</b></v></def> <!--Matrix 2D, scalar, tracking on a single frame-->
+<def><k>robustAnnotation</k><v><b>U</b></v></def>
+<def><k>singleAnnotatorRatings</k><v><b>V</b></v></def> <!--Matrix containing ratings for one annotator-->
+<def><k>temporalWindow</k><v><b>W</b></v></def> <!--3D matrix-->
+
+<!--Greek, lowercase, not bold-->
+
+<def><k>currentFeatureSet</k><v><b>\alpha</b></v></def> <!--Alpha-->
+<def><k>tempFeatureSet</k><v><b>\beta</b></v></def> <!--beta-->
+<!--Gamma-->
+<!--delta-->
+<def><k>framesInCorpus</k><v><b>\epsilon</b></v></def><!--epsilon-->
+<!--Zeta-->
+<def><k>numToRemoveInMask</k><v><b>\eta</b></v></def> <!--Eta-->
+<def><k>cultureSelect</k><v><b>\theta</b></v></def>
+<!--Iota-->
+<def><k>numTrackers</k><v><b>\kappa</b></v></def> <!--scalar kappa-->
+<def><k>lpbWord</k><v><b>\lambda</b></v></def>
+<def><k>modeFunc</k><v><b>\mu</b></v></def> <!--Mu-->
+<def><k>correlTemp</k><v><b>\nu</b></v></def><!--Nu-->
+<!--Xi-->
+<!--omicron-->
+<!--reserved Pi-->
+<def><k>correlFunc</k><v>\rho</v></def> <!--Rho-->
+<!--reserved Sigma-->
+<def><k>projFunc</k><v>\tau</v></def> <!--Tau, projection function-->
+<!--upsilon-->
+<def><k>varFunc</k><v>\phi</v></def><!--Phi-->
+<def><k>rawTrackingHomog</k><v><b>\chi</b></v></def><!--Chi-->
+<def><k>modelFitError</k><v>\psi</v></def><!--Psi-->
+<def><k>numFeaturesInMask</k><v>\omega</v></def> <!--Omega-->
+
+<def><k>temporalFeatPlural</k><v>statistical features</v></def>
+<def><k>temporalFeatPluralStart</k><v>Statistical features</v></def>
+<def><k>temporalFeatPluralCap</k><v>Statistical Features</v></def>
+<def><k>temporalFeatSingle</k><v>statistical feature</v></def>
+<def><k>temporalFeatSingleStart</k><v>Statistical feature</v></def>
+<def><k>temporalFeatSingleCap</k><v>Statistical Feature</v></def>
+</defs>
+
