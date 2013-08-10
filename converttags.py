@@ -64,7 +64,7 @@ def GenReplacement(tag):
 	if string.find(tag, '{') != -1:
 		print tag
 
-		replaceTags = ["overline", "mathbb", "bar", "mathcal"]
+		replaceTags = ["overline", "mathbb", "bar", "mathcal", "acs", "widehat"]
 		for t in replaceTags:
 			if tag[:len(t)+2] == "\\"+t+"{":
 				return "<"+t+">"+tag[len(t)+2:-1]+"</"+t+">"
