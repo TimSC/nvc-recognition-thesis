@@ -21,7 +21,7 @@ def FindTagPos(li):
 			scan = False
 			continue
 
-		if li[pos] in [' ','_','^','}','$'] and bracket==0:
+		if li[pos] in [' ','_','^','}','$','='] and bracket==0:
 			scan = False
 			continue
 			
@@ -57,6 +57,9 @@ def GenReplacement(tag):
 		return "<b>"+tag[8:-1]+"</b>"
 	if tag[:10] == "\\footnote{":
 		return "<footnote>"+tag[10:-1]+"</footnote>"
+
+	if tag[:5] == "\\frac":
+		return "#"+tag[1:]
 
 	if string.find(tag, '{') != -1:
 		print tag

@@ -129,7 +129,7 @@ eqn\end{gather}
 
 <p>Although these feature components encode shape information from localised areas of the face, the features tend to include redundant information and are not robust to scale changes.</p>
 
-<figure caption="A trivial example of how algorithmic geometric features are calculated for 3 tracked points. Exhaustive distance pairs of trackers are calculated. \thesiscomment{MathInFig}" label="FigureAlgorithmicFeatures">
+<figure caption="A trivial example of how algorithmic geometric features are calculated for 3 tracked points. Exhaustive distance pairs of trackers are calculated." label="FigureAlgorithmicFeatures">
 <graphic width="0.5">nvcclass/algorithmic-features.pdf</graphic>
 </figure>
 
@@ -321,14 +321,14 @@ eqn\end{gather}
 Various parameters were tuned through experimental validation: five thresholds were used to discretise features for Adaboost ($\numThresholds = 5$) and an \ac{SVM} cost parameter $C=1.0$ was used. LBP grid size were $\lbpgridwidth=10, \lbpgridheight=10$.</p>
 
 <table short="\ac{AUC} Performance of various features and classifiers." caption="Performance of various features and classifiers. Clip level testing, average score of categories shown. \ac{SVM} with Algorithmic Geometric features produce the highest performance. The error limits are based on one standard deviation of the average cross validation fold performance. The data is shown in graphical form in Figures \ref{CompareGraphMultiPerson} and \ref{PersonIndependentCompareGraph}" label="TableCompareFeaturesAndClassifiers">
-<tr><td>Test </td><td> \multicolumn{2}{c|}{Multi-person} </td><td> \multicolumn{2}{c}{Person independent} </td></tr>
+<tr><td>Test </td><td> Multi-person </td><td></td><td> Person independent </td><td></td></tr>
 <tr><td></td><td> SVM </td><td> Adaboost </td><td> SVM </td><td> Adaboost </td></tr>
 <tr><td>affine</td><td> 0.52 $\pm$ 0.05 </td><td> 0.56 $\pm$ 0.04 </td><td> 0.53 $\pm$ 0.05 </td><td> 0.51 $\pm$ 0.06</td></tr>
 <tr><td>deform-cubica</td><td> 0.50 $\pm$ 0.00 </td><td> 0.55 $\pm$ 0.06 </td><td> 0.50 $\pm$ 0.00 </td><td> 0.51 $\pm$ 0.07</td></tr>
 <tr><td>deform-fastica</td><td> 0.50 $\pm$ 0.00 </td><td> 0.55 $\pm$ 0.06 </td><td> 0.50 $\pm$ 0.00 </td><td> 0.51 $\pm$ 0.07</td></tr>
 <tr><td>deform-pca</td><td> 0.54 $\pm$ 0.04 </td><td> 0.68 $\pm$ 0.05 </td><td> 0.50 $\pm$ 0.00 </td><td> 0.62 $\pm$ 0.07</td></tr>
 <tr><td>geometric-h</td><td> 0.73 $\pm$ 0.04 </td><td> 0.68 $\pm$ 0.06 </td><td> 0.63 $\pm$ 0.05 </td><td> 0.60 $\pm$ 0.08</td></tr>
-<tr><td>\rowcolor[gray]{.95} geometric-a</td><td> 0.75 $\pm$ 0.04 </td><td> 0.72 $\pm$ 0.04 </td><td> 0.70 $\pm$ 0.04 </td><td> 0.68 $\pm$ 0.05</td></tr>
+<tr highlight="yes"><td>geometric-a</td><td> 0.75 $\pm$ 0.04 </td><td> 0.72 $\pm$ 0.04 </td><td> 0.70 $\pm$ 0.04 </td><td> 0.68 $\pm$ 0.05</td></tr>
 <tr><td>lbp</td><td> 0.58 $\pm$ 0.05 </td><td> 0.62 $\pm$ 0.05 </td><td> 0.52 $\pm$ 0.07 </td><td> 0.48 $\pm$ 0.10</td></tr>
 <tr><td>lma</td><td> 0.53 $\pm$ 0.06 </td><td> 0.56 $\pm$ 0.04 </td><td> 0.49 $\pm$ 0.02 </td><td> 0.50 $\pm$ 0.08</td></tr>
 </table>
@@ -427,7 +427,7 @@ eqn\end{gather}
 <table short="Comparison of \ac{AUC} performance of \temporalFeatPlural generated based on $\temporalFeature_{geometric-h}$." caption="Comparison of \ac{AUC} performance of \temporalFeatPlural generated based on $\temporalFeature_{geometric-h}$. SVM Classification was assessed by person independent testing. Confidence intervals of two standard deviations are shown" label="TableHeuristicFeaturesTemporal">
 <tr><td>\temporalFeatPluralCap </td><td> Testing </td><td> Agree </td><td> Question </td><td> Think </td><td> Understand</td></tr>
 <tr><td>No </td><td> Clip level </td><td> 0.73$\pm$0.08 </td><td> 0.54$\pm$0.16 </td><td> 0.58$\pm$0.00 </td><td> 0.68$\pm$0.16</td></tr> <!--XI-->
-<tr><td>\rowcolor[gray]{.95} Yes </td><td> Clip level </td><td> 0.74$\pm$0.06 </td><td> 0.57$\pm$0.10 </td><td> 0.60$\pm$0.04 </td><td> 0.69$\pm$0.12</td></tr> <!--XI-->
+<tr highlight="yes"><td>Yes </td><td> Clip level </td><td> 0.74$\pm$0.06 </td><td> 0.57$\pm$0.10 </td><td> 0.60$\pm$0.04 </td><td> 0.69$\pm$0.12</td></tr> <!--XI-->
 <tr><td>No </td><td> Frame level </td><td> 0.59$\pm$0.04 </td><td> 0.51$\pm$0.04 </td><td> 0.52$\pm$0.04 </td><td> 0.56$\pm$0.04</td></tr> <!--X-->
 <tr><td>Yes </td><td> Frame level </td><td> 0.60$\pm$0.04 </td><td> 0.51$\pm$0.04 </td><td> 0.55$\pm$0.04 </td><td> 0.58$\pm$0.04</td></tr> <!--X-->
 </table>
