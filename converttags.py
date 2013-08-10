@@ -6,6 +6,11 @@ def FindTagPos(li):
 	if startPos == -1:
 		return -1, -1
 
+	while li[startPos+1] == "{" or li[startPos+1] == "}":
+		startPos = string.find(li,"\\",startPos+1)
+		if startPos == -1:
+			return -1, -1
+
 	pos = startPos
 	scan = True
 	bracket = 0
@@ -16,7 +21,7 @@ def FindTagPos(li):
 			scan = False
 			continue
 
-		if li[pos] == ' ' and bracket==0:
+		if li[pos] in [' ','_','^','}','$'] and bracket==0:
 			scan = False
 			continue
 			
@@ -46,11 +51,20 @@ def GenReplacement(tag):
 		return "<cite ref='"+tag[6:-1]+"'/>"
 	if tag[:5] == "\\ref{":
 		return "<ref label='"+tag[5:-1]+"'/>"
+	if tag[:8] == "\\textit{":
+		return "<i>"+tag[8:-1]+"</i>"
+	if tag[:8] == "\\textbf{":
+		return "<b>"+tag[8:-1]+"</b>"
 	if tag[:10] == "\\footnote{":
 		return "<footnote>"+tag[10:-1]+"</footnote>"
 
 	if string.find(tag, '{') != -1:
 		print tag
+
+		replaceTags = ["overline", "mathbb", "bar"]
+		for t in replaceTags:
+			if tag[:len(t)+2] == "\\"+t+"{":
+				return "<"+t+">"+tag[len(t)+2:-1]+"</"+t+">"
 
 	assert string.find(tag, '{') == -1
 	return "<macro v='"+tag[1:]+"'/>"
@@ -77,6 +91,9 @@ if __name__ == "__main__":
 	fiOut = codecs.open(finaOut, "wt", "utf-8")
 
 	for li in fi:
+		if li[:3]=="eqn":
+			fiOut.write(li)
+			continue
 		lia = li.replace("\"{o}",unichr(0x00F6))
 		li2 = ReplaceTags(lia)
 		li3 = string.replace(li2,"``",unichr(8220))
