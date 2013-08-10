@@ -8,7 +8,7 @@ def FindTagPos(li):
 
 	pos = startPos
 	scan = True
-	bracket = False
+	bracket = 0
 	while scan:
 		#print pos, li[pos]
 
@@ -16,18 +16,19 @@ def FindTagPos(li):
 			scan = False
 			continue
 
-		if li[pos] == ' ' and not bracket:
+		if li[pos] == ' ' and bracket==0:
 			scan = False
 			continue
 			
 		if li[pos] == '{':
-			bracket = True
+			bracket += 1
 
 		if li[pos] == '}':
-			bracket = False
-			scan = False
-			pos += 1
-			continue
+			bracket -= 1
+			if bracket == 0:
+				scan = False
+				pos += 1
+				continue
 
 		pos += 1
 

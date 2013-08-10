@@ -163,13 +163,9 @@ Given that the situation in which data is recorded is significant, the next sect
 <tr><td></td><td> labelled for facial expression not \ac{NVC}, only recently available (since 2011)</td></tr>
 </table>
 
-\begin{figure}
-\centering
-\includegraphics[width = 0.50 \columnwidth]{corpus/amimeeting-standing.jpg}
-
-\caption[A participant getting up from a seated position in the AMI Meeting corpus]{An instance in the AMI Meeting corpus of a participant getting up from a seated position and standing near a white board with their back facing the camera (in video IN1014.Closeup2.avi frame 5200). This behaviour makes facial tracking problematic.}
-\label{FigureAmiMeetingStanding}
-\end{figure}
+<figure label="FigureAmiMeetingStanding" short="A participant getting up from a seated position in the AMI Meeting corpus" caption="An instance in the AMI Meeting corpus of a participant getting up from a seated position and standing near a white board with their back facing the camera (in video IN1014.Closeup2.avi frame 5200). This behaviour makes facial tracking problematic.">
+<graphic width="0.50">corpus/amimeeting-standing.jpg</graphic>
+</figure>
 
 <p>There are many other task based or induced emotion corpuses (see Table \ref{TableAvailableDatasets}), but they exhibit greater variability in social context, low video quality or the task being too specific make these data sets unsuitable. See Table \ref{TableDatasetSuitability} for the suitability of each data set. Also, many corpuses use more than two participants but limiting conversations to two persons is likely to be simpler to understand and analyse. Corpus videos in which the face has a small size can be difficult to accurately track. Corpus videos that feature more than two participants may have a larger head pose variation due to people turning to face different people during the conversation. These factors can make tracking less effective. Later chapters use Canal9 and Mind Reading for regression (see Sections \ref{SectionCanal9} and \ref{SectionMindReading}), but this thesis is primarily focused on a new \ac{NVC} corpus TwoTalk. The next section describes how the TwoTalk corpus was recorded.</p>
 
@@ -179,21 +175,17 @@ Given that the situation in which data is recorded is significant, the next sect
 
 <p>Two participants were selected from the department and invited to a data capture session in a visual media lab. The only criteria used to select participants was the requirement to have people of roughly equal social seniority. Culture, familiarity and gender were not controlled in participant selection. However, these differences may affect the type and frequency of \ac{NVC} signals.</p>
 
-\begin{figure}
-\centering
-\includegraphics[width = 0.24 \columnwidth]{corpus/1008.jpg}
-\includegraphics[width = 0.24 \columnwidth]{corpus/1011.jpg}
-\includegraphics[width = 0.24 \columnwidth]{corpus/2008.jpg}
-\includegraphics[width = 0.24 \columnwidth]{corpus/2011.jpg}
+<figure short="An example frame from each of the eight participants." caption="An example frame from each of the eight participants. The top row, looking left to right, are participants 1008, 1011, 2008 and 2011. The bottom row are participants 3008, 3011, 6008 and 6011." label="FigureExampleCorpusFrames">
+<graphic width="0.24">corpus/1008.jpg</graphic>
+<graphic width="0.24">corpus/1011.jpg</graphic>
+<graphic width="0.24">corpus/2008.jpg</graphic>
+<graphic width="0.24">corpus/2011.jpg</graphic><br/>
 
-\includegraphics[width = 0.24 \columnwidth]{corpus/3008.jpg}
-\includegraphics[width = 0.24 \columnwidth]{corpus/3011.jpg}
-\includegraphics[width = 0.24 \columnwidth]{corpus/6008.jpg}
-\includegraphics[width = 0.24 \columnwidth]{corpus/6011.jpg}
-
-\caption[An example frame from each of the eight participants.]{An example frame from each of the eight participants. The top row, looking left to right, are participants 1008, 1011, 2008 and 2011. The bottom row are participants 3008, 3011, 6008 and 6011.}
-\label{FigureExampleCorpusFrames}
-\end{figure}
+<graphic width="0.24">corpus/3008.jpg</graphic>
+<graphic width="0.24">corpus/3011.jpg</graphic>
+<graphic width="0.24">corpus/6008.jpg</graphic>
+<graphic width="0.24">corpus/6011.jpg</graphic>
+</figure>
 
 <p>The laboratory was selected as the setting to perform data capture. This choice was based on the available cameras being directly wired into a fixed, non-portable data recording system. Videos were recorded using two progressive scan, PAL digital video cameras with a frame resolution of 720 by 576 pixels and 25 Hz frame rate. The cameras were arranged to record facial behaviour, which is involved in the expression of many types of \ac{NVC} \cite{Argyle1976} \cite{Morency2011}. The face size in the video was typically around 200 by 300 pixels. The cameras were genlocked to ensure frame synchronisation. The error in synchronisation was smaller than the limits of measurement (a fraction of a microsecond). To minimise synchronisation error, cameras of the same type and synchronisation cables of the same length were used (this ensures the signal propagation from the generator to the cameras takes the same time duration). The arrangement of the lab equipment is shown in Figure \ref{FigureVideoCaptureEquipment}. 
 The corpus was recorded in 2009 and before the availability of affordable consumer depth cameras (which provide both an optical image and a depth map). Recent data sets have begun to utilise ``two and half''{D} or 3{D} recording \cite{Fanelli2010b} with this type of equipment.</p>
