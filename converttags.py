@@ -21,7 +21,7 @@ def FindTagPos(li):
 			scan = False
 			continue
 
-		if li[pos] in [' ','_','^','}','$','='] and bracket==0:
+		if li[pos] in [' ','_','^','}','$','=','\\'] and bracket==0:
 			scan = False
 			continue
 			
