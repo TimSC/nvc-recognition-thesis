@@ -16,6 +16,7 @@ def FindTagPos(li):
 	bracket = 0
 	while scan:
 		#print pos, li[pos]
+		pos += 1
 
 		if pos >= len(li):
 			scan = False
@@ -35,7 +36,6 @@ def FindTagPos(li):
 				pos += 1
 				continue
 
-		pos += 1
 
 	return startPos, pos
 
@@ -64,7 +64,7 @@ def GenReplacement(tag):
 	if string.find(tag, '{') != -1:
 		print tag
 
-		replaceTags = ["overline", "mathbb", "bar"]
+		replaceTags = ["overline", "mathbb", "bar", "mathcal"]
 		for t in replaceTags:
 			if tag[:len(t)+2] == "\\"+t+"{":
 				return "<"+t+">"+tag[len(t)+2:-1]+"</"+t+">"

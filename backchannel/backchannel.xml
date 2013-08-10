@@ -120,14 +120,14 @@ The next section attempts to find patterns in facial behaviour that are not nece
 
 <table short="Maximum correlation $\dyadicCorrelation_{max}$ of \textbf{facial shape features} for different pairs of participants (including corresponding and non-corresponding features)." caption="Maximum correlation $\dyadicCorrelation_{max}$ of \textbf{facial shape features} for different pairs of participants (including corresponding and non-corresponding features). Pairs that were participating in the same conversation are highlighted.">
 <tr><td></td><td> 1008 </td><td> 1011 </td><td> 2008 </td><td> 2011 </td><td> 3008 </td><td> 3011 </td><td> 6008 </td><td> 6011 </td></tr>
-<tr><td>1008 </td><td> \cellcolor{orange} 1.00 </td><td> \cellcolor{orange} 0.30 </td><td> 0.18 </td><td> 0.15 </td><td> 0.23 </td><td> 0.22 </td><td> 0.15 </td><td> 0.18</td></tr>
-<tr><td>1011 </td><td> \cellcolor{orange} </td><td> \cellcolor{orange} 1.00</td><td> 0.25</td><td> 0.22</td><td> 0.29</td><td> 0.23</td><td> 0.21</td><td> 0.23</td></tr>
-<tr><td>2008 </td><td> </td><td> </td><td> \cellcolor{orange} 1.00</td><td> \cellcolor{orange} 0.43</td><td> 0.17</td><td> 0.23</td><td> 0.17</td><td> 0.18</td></tr>
-<tr><td>2011 </td><td> </td><td> </td><td> \cellcolor{orange} </td><td> \cellcolor{orange} 1.00 </td><td> 0.22</td><td> 0.19</td><td>0.18 </td><td>0.19 </td></tr>
-<tr><td>3008 </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange} 1.00 </td><td> \cellcolor{orange} 0.49</td><td> 0.18</td><td> 0.29</td></tr>
-<tr><td>3011 </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange} </td><td> \cellcolor{orange} 1.00</td><td> 0.21</td><td> 0.16</td></tr>
-<tr><td>6008 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange} 1.00</td><td> \cellcolor{orange} 0.42</td></tr>
-<tr><td>6011 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange} </td><td> \cellcolor{orange} 1.00</td></tr>
+<tr><td>1008 </td><td highlight="yes">1.00 </td><td highlight="yes">0.30 </td><td> 0.18 </td><td> 0.15 </td><td> 0.23 </td><td> 0.22 </td><td> 0.15 </td><td> 0.18</td></tr>
+<tr><td>1011 </td><td highlight="yes"></td><td highlight="yes">1.00</td><td> 0.25</td><td> 0.22</td><td> 0.29</td><td> 0.23</td><td> 0.21</td><td> 0.23</td></tr>
+<tr><td>2008 </td><td> </td><td> </td><td highlight="yes">1.00</td><td highlight="yes">0.43</td><td> 0.17</td><td> 0.23</td><td> 0.17</td><td> 0.18</td></tr>
+<tr><td>2011 </td><td> </td><td> </td><td highlight="yes"></td><td highlight="yes">1.00 </td><td> 0.22</td><td> 0.19</td><td>0.18 </td><td>0.19 </td></tr>
+<tr><td>3008 </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes">1.00 </td><td highlight="yes">0.49</td><td> 0.18</td><td> 0.29</td></tr>
+<tr><td>3011 </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes"></td><td highlight="yes">1.00</td><td> 0.21</td><td> 0.16</td></tr>
+<tr><td>6008 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes">1.00</td><td highlight="yes">0.42</td></tr>
+<tr><td>6011 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes"></td><td highlight="yes">1.00</td></tr>
 </table>
 
 <p>The previous section considered the interpersonal coordination of facial behaviour for corresponding areas of the face. However, facial behaviour coupling between people may be expressed in different facial areas. This falls within the definition of synchrony, for which ``the important element is the timing, rather than the nature of the behaviours'' \cite{Delaherche2012}. Synchrony can involve coordinated times of different forms of behaviour, e.g. beginning to speak when another person stops speaking. This phenomena has been explored to some extent by Ramseyer and Tschacher \cite{Ramseyer2008}, who did not use corresponding parts of the body but instead searched entire images for any movement synchrony. To find correlations for this broader problem, the feature component $i$ for subject $A$ is compared to feature component $j$ for subject $B$. Because each feature component corresponds to a different area of the face, this searches for relationships in shape between non-corresponding facial areas. The correlation between facial components $i$ and $j$ ($i \in \{0...\numFeatures\}$ and $j \in \{0...\numFeatures\}$) defined as $\dyadicCorrelation^{A,B}_{i,j} \in \mathbb{R}$ for subject $A$ and $B$:</p>
@@ -144,14 +144,14 @@ eqn\end{gather}
 
 <table label="TableBackchannelVar" short="Maximum correlation $\dyadicCorrelation_{max}$ of sliding window \textbf{variance of facial shape}, for various pairs of participants (including corresponding and non-corresponding features)." caption="Maximum correlation $\dyadicCorrelation_{max}$ of sliding window \textbf{variance of facial shape}, for various pairs of participants (including corresponding and non-corresponding features). Pairs that were participating in the same conversation are highlighted.">
 <tr><td></td><td> 1008 </td><td> 1011 </td><td> 2008 </td><td> 2011 </td><td> 3008 </td><td> 3011 </td><td> 6008 </td><td> 6011 </td></tr>
-<tr><td>1008 </td><td> \cellcolor{orange} 1.00</td><td> \cellcolor{orange} 0.32</td><td> 0.13</td><td> 0.13</td><td> 0.29</td><td> 0.38</td><td> 0.16</td><td> 0.27</td></tr>
-<tr><td>1011 </td><td> \cellcolor{orange} </td><td> \cellcolor{orange}1.00</td><td> 0.33</td><td> 0.21</td><td> 0.19</td><td> 0.16</td><td> 0.21</td><td> 0.18</td></tr>
-<tr><td>2008 </td><td> </td><td> </td><td> \cellcolor{orange} 1.00</td><td> \cellcolor{orange}0.34</td><td> 0.11</td><td> 0.23</td><td>0.16 </td><td>0.21 </td></tr>
-<tr><td>2011 </td><td> </td><td> </td><td> \cellcolor{orange} </td><td> \cellcolor{orange}1.00 </td><td> 0.12</td><td> 0.14</td><td> 0.26</td><td> 0.29</td></tr>
-<tr><td>3008 </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange}1.00</td><td> \cellcolor{orange}0.41</td><td> 0.47</td><td> 0.14</td></tr>
-<tr><td>3011 </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange} </td><td> \cellcolor{orange}1.00</td><td> 0.27</td><td> 0.25</td></tr>
-<tr><td>6008 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange}1.00</td><td>\cellcolor{orange} 0.15</td></tr>
-<tr><td>6011 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> \cellcolor{orange} </td><td> \cellcolor{orange}1.00</td></tr>
+<tr><td>1008 </td><td highlight="yes">1.00</td><td highlight="yes">0.32</td><td> 0.13</td><td> 0.13</td><td> 0.29</td><td> 0.38</td><td> 0.16</td><td> 0.27</td></tr>
+<tr><td>1011 </td><td highlight="yes"></td><td highlight="yes">1.00</td><td> 0.33</td><td> 0.21</td><td> 0.19</td><td> 0.16</td><td> 0.21</td><td> 0.18</td></tr>
+<tr><td>2008 </td><td> </td><td> </td><td highlight="yes">1.00</td><td highlight="yes">0.34</td><td> 0.11</td><td> 0.23</td><td>0.16 </td><td>0.21 </td></tr>
+<tr><td>2011 </td><td> </td><td> </td><td highlight="yes"></td><td highlight="yes">1.00 </td><td> 0.12</td><td> 0.14</td><td> 0.26</td><td> 0.29</td></tr>
+<tr><td>3008 </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes">1.00</td><td highlight="yes">0.41</td><td> 0.47</td><td> 0.14</td></tr>
+<tr><td>3011 </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes"></td><td highlight="yes">1.00</td><td> 0.27</td><td> 0.25</td></tr>
+<tr><td>6008 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes">1.00</td><td highlight="yes">0.15</td></tr>
+<tr><td>6011 </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td highlight="yes"></td><td highlight="yes">1.00</td></tr>
 </table>
 
 <p>The previous sections have examined coupling of face shape in natural, dyadic conversation. However, it may be that facial motion contains reliable patterns of human behaviour. For instance, head pitch activity might encode nodding in agreement and this may be related to mouth activity caused by talking. The variance of each feature component in a sliding window was calculated. The window was selected to be 1 second in duration (25 frames), because this is sensitive to \ac{NVC} signals of a relatively short duration. However, different \ac{NVC} signals may occur on other time scales which would not be detected. At sliding window position $\timeOffset$, the variance $\slidingWindowVar$ of a feature component in a sliding window of 25 frames duration is:</p>
