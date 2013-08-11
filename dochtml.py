@@ -17,4 +17,6 @@ if __name__ == "__main__":
 
 	root2 = PreprocessXml(root)
 
-	
+	for el in root2:
+		print el.tag
+
