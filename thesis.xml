@@ -1,0 +1,15 @@
+
+<doc>
+
+<include file="intro.xml"/>
+<include file="introduction/introduction.xml"/>
+<include file="litreview/litreview.xml"/>
+<include file="corpus/corpus.xml"/>
+<include file="nvcclass/nvcclass.xml"/>
+<include file="backchannel/backchannel.xml"/>
+<include file="annotation/annotation.xml"/>
+<include file="nvcregression/nvcregression.xml"/>
+<include file="featureselection/featureselection.xml"/>
+<include file="conclusion/conclusion.xml"/>
+
+</doc>
