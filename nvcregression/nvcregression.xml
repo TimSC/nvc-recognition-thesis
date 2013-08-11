@@ -72,7 +72,7 @@ Datcu and Rothkrantz <cite ref='Datcu2007'/> calculated variance of feature comp
 <p>The details for feature extraction used to form the clip digest vector will be discussed in the next section, as well as some of the properties of $<macro v='nu'/>$-SVR.</p>
 
 </section>
-<section title="<macro v='temporalFeatSingleCap'/> Extraction and Regression" label="SectionDigestVector">
+<section title="&lt;macro v='temporalFeatSingleCap'/&gt; Extraction and Regression" label="SectionDigestVector">
 
 <p>This section describes the details of the regression system and the differences from the classification approach discussed in Chapter <ref label='ChapterClassification'/>. Tracking and <macro v='featureGeneration'/> is used to transform video frames into a form that can be used by standard machine learning techniques. As before, feature point tracking and <macro v='featureGeneration'/> are performed by <ac long='yes'>LP</ac> trackers and <i>geometric-a</i> features, previously introduced in Chapter <ref label='ChapterClassification'/>. However these features consider individual frames separately and do not consider how the features vary over time. The clip digest vector, described below, encodes the feature variation over time.</p>
 
@@ -103,7 +103,7 @@ Person independent testing is conducted, rather than multi-person testing, becau
 <p>This section discusses the experimental results of the automatic <ac>NVC</ac> regression system. 
 The parameters for $<macro v='nu'/>$-SVR of $C = 1.0$ and $<macro v='nu'/> = 0.5$ where found to be effective.</p>
 
-<figure label="ThinkScatterFigure" caption="Scatter plot of ground truth and automatically predicted <i>thinking</i> <ac>NVC</ac> intensities for the <ac>UK</ac> culture. Each point corresponds to a single video clip.">
+<figure label="ThinkScatterFigure" caption="Scatter plot of ground truth and automatically predicted &lt;i&gt;thinking&lt;/i&gt; &lt;ac&gt;NVC&lt;/ac&gt; intensities for the &lt;ac&gt;UK&lt;/ac&gt; culture. Each point corresponds to a single video clip.">
 <graphic width="0.60">nvcregression/ScatterThinkUk.pdf</graphic>
 </figure>
 
@@ -111,7 +111,7 @@ The parameters for $<macro v='nu'/>$-SVR of $C = 1.0$ and $<macro v='nu'/> = 0.5
 The Pearson correlation of this distribution is $0.46$ (a score of 1 being perfect correlation and 0 indicating no correlation). There are more samples on the left than on the right area of the plot. This is related to the annotated frequency of different intensity <ac>NVC</ac> signals (see Figure <ref label='RatingScoresFigure'/>).
 The majority of points fall close to where a linear regression line would fall, which implies that most samples have a relatively good <ac>NVC</ac> prediction.</p>
 
-<table label="CultureCorrelationTable" short="Correlation of automatic system for training and testing on a single culture." caption="Correlation of automatic system for training and testing on a single culture. The error limits are one standard deviation of the individual cross validation correlation results. Figure <ref label='ThinkScatterFigure'/> shows the individual ratings for <ac>UK</ac> thinking <ac>NVC</ac>. Note that this table uses a different performance metric than in Chapter <ref label='ChapterClassification'/>, therefore the performance values cannot be directly compared.">
+<table label="CultureCorrelationTable" short="Correlation of automatic system for training and testing on a single culture." caption="Correlation of automatic system for training and testing on a single culture. The error limits are one standard deviation of the individual cross validation correlation results. Figure &lt;ref label='ThinkScatterFigure'/&gt; shows the individual ratings for &lt;ac&gt;UK&lt;/ac&gt; thinking &lt;ac&gt;NVC&lt;/ac&gt;. Note that this table uses a different performance metric than in Chapter &lt;ref label='ChapterClassification'/&gt;, therefore the performance values cannot be directly compared.">
 <tr><td>Culture </td><td> Agree </td><td> Question </td><td> Thinking </td><td> Understand </td><td> Average</td></tr>
 <tr><td>India </td><td> 0.38$<macro v='pm'/>$0.11 </td><td> 0.20$<macro v='pm'/>$0.14 </td><td> 0.33$<macro v='pm'/>$0.13 </td><td> 0.23$<macro v='pm'/>$0.13 </td><td> 0.29</td></tr>
 <tr><td>Kenya </td><td> 0.43$<macro v='pm'/>$0.15 </td><td> 0.15$<macro v='pm'/>$0.19 </td><td> 0.39$<macro v='pm'/>$0.20 </td><td> 0.43$<macro v='pm'/>$0.17 </td><td> 0.35</td></tr>
@@ -168,20 +168,20 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 
 <p>The second clip “GyUrjdl6VT” (Figure <ref label='ExampleClipRatings2'/>) shows that all four predictions are at least approximately correct. The NVC categories <i>agree</i> and <i>question</i> are almost exactly correct, while the labels for <i>thinking</i> and <i>understand</i> are in rough agreement. These two figures imply the system is broadly making useful predictions but occasionally has significant errors.</p>
 
-<figure short="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics." caption="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics. The <ac>NVC</ac> categories and cultures have been combined by taking the average performance." label="FigureMeanOrVarianceCompared">
+<figure short="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics." caption="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics. The &lt;ac&gt;NVC&lt;/ac&gt; categories and cultures have been combined by taking the average performance." label="FigureMeanOrVarianceCompared">
 <graphic width="0.85">nvcregression/PlotMeanOrVarianceOnlyFig.pdf</graphic>
 </figure>
 
 <p>As discussed in Section <ref label='SectionClipFeatureExtraction'/>, <macro v='featureGeneration'/> was performed by taking the clip mean and clip variance of each component of $<macro v='frameFeature'/>_{alg}$. When either the mean features or variance features were disabled, the performance was reduced (see Figure <ref label='FigureMeanOrVarianceCompared'/>). Using only mean based features resulted in a higher performance than just using the variance based features. The mean of features encodes facial expression shape, while variance of features encodes how much motion or activity there is in a local area of the face. This suggests that static face expression contains more information than facial activity for some <ac>NVC</ac> signals. However, there may be more subtle temporal variations that contain relevant <ac>NVC</ac> information. The best performance is when both of these approaches are combined and implies that facial expression and facial activity contain complementary information. Several papers have noted that temporal information is crucial in effective emotion recognition (see Section <ref label='BackgroundSupervisedRegression'/>). Based on the results of this chapter, this holds true of <ac>NVC</ac> as well as for emotion. Perhaps future work can find improved statistical measures that better encode the information to improve system performance.</p>
 
-<figure label="FigureMeanOrVarianceComparedWithCategories" short="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics." caption="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics. Each <ac>NVC</ac> category is separately shown.">
+<figure label="FigureMeanOrVarianceComparedWithCategories" short="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics." caption="The performance of the automatic system using either feature mean statistics or feature variance statistics or the original approach of using both mean and variance statistics. Each &lt;ac&gt;NVC&lt;/ac&gt; category is separately shown.">
 <graphic width="0.85">nvcregression/MeanVarPlotWithCategories.png</graphic>
 </figure>
 
 <p>The role of facial expression and facial activity can be investigated for individual <ac>NVC</ac> categories. Each <ac>NVC</ac> involves different gestures and different areas of the face. Figure <ref label='FigureMeanOrVarianceComparedWithCategories'/> shows the performance of using only mean statistics or only variance statistics for each category. For most <ac>NVC</ac> categories, both variance and mean statistics provide the best approach for automatic regression. However, the performance for <i>understand</i> is approximately equal if the mean statistics approach is compared to the combined mean and variance approach performance. This implies that variance does not contain any complementary information for <i>understand</i> <ac>NVC</ac>. It is possible that some <ac>NVC</ac> expressions may be recognized by purely static facial expressions. However, three <ac>NVC</ac> signals require both facial expression and the temporal variation of expression for optimal performance.</p>
 
 </section>
-<section title="Applying Digest Vector to <ac>NVC</ac> Classification" label="SectionDigestVectorOnClassification">
+<section title="Applying Digest Vector to &lt;ac&gt;NVC&lt;/ac&gt; Classification" label="SectionDigestVectorOnClassification">
 
 <p>The concept of encoding a video clip into a fixed length digest vector may also be applied to the person dependent classification problem discussed in Chapter <ref label='ChapterClassification'/>. The approach described in the preceding section is slightly modified to make it suitable for binary class labels and <ac>AUC</ac> performance evaluation. As in Chapter <ref label='ChapterClassification'/>, only clear examples of <ac>NVC</ac> are used, which is a less challenging problem than using all samples in the corpus.</p>
 
@@ -191,7 +191,7 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 
 <p>The performance of the system is shown in Table <ref label='TableDigestMethodOnClassification'/>. The changes to <macro v='featureGeneration'/> and classification result in a performance increase from 75% to 85.4%. This performance is an improvement on the previous state of the art, which was the overall performance of the <ac>HMM</ac> approach proposed by Akak{<macro v='i'/>}n and Sankur <cite ref='Akakin2011'/>. There are some <ac>NVC</ac> signals, such as <i>agree</i> and <i>understand</i>, for which <ac>HMM</ac> classification is still more effective than the method proposed here. The overall improvement in performance shows that for some <ac>NVC</ac> signals, appropriate <macro v='featureGeneration'/> can effectively encode temporal variations. In some cases, this can exceed the performance of some temporal classifier methods.</p>
 
-<table caption="<ac>AUC</ac> performance, expressed as percentages. Testing is on a multi-person basis. The highlighted row corresponds to the method described in this chapter." label="TableDigestMethodOnClassification">
+<table caption="&lt;ac&gt;AUC&lt;/ac&gt; performance, expressed as percentages. Testing is on a multi-person basis. The highlighted row corresponds to the method described in this chapter." label="TableDigestMethodOnClassification">
 <tr><td>Method </td><td> Agree </td><td> Question </td><td> Thinking </td><td> Understand </td><td> Average </td></tr>
 <tr><td>Akakın and Sankur, 2011 <cite ref='Akakin2011'/> </td><td> 85.9 </td><td> 78.2 </td><td> 83.8 </td><td> 83.6 </td><td> 82.9 </td></tr>
 <tr><td>Sheerman-Chase <macro v='etal'/> 2009 <cite ref='SheermanChase2009'/> </td><td> 70 </td><td> 73 </td><td> 81 </td><td> 80 </td><td> 76 </td></tr>
@@ -200,18 +200,18 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 </table>
 
 </section>
-<section title="Regression on High Inter-annotator Agreement <ac>NVC</ac> Signals" label="SectionRegressionHighAgreement">
+<section title="Regression on High Inter-annotator Agreement &lt;ac&gt;NVC&lt;/ac&gt; Signals" label="SectionRegressionHighAgreement">
 
 <p>The annotation consensus score $<macro v='filteredAnnotation'/>^{<macro v='clipId'/>}_{<macro v='nvcCategory'/>}$ is formed by taking the mean of trusted annotator ratings. This assumes taking the mean of annotator ratings forms a meaningful <ac>NVC</ac> label. However, the level of inter-annotator agreement, measured by rating variance, is different for each clip (see Section <ref label='SectionInterAnnotatorAgreement'/>). By removal of clips of low inter-annotator agreement, it may be possible to remove data with meaningless labels from the corpus. However, if the filtering is too aggressive, useful and meaningful data may be discarded and the problem begins to become over-simplified.</p>
 
 <p>Experiments were performed based on the method in Section <ref label='SectionRegressionResultsAndDiscussion'/> except that only a subset of clips from the corpus was used for training and test. The subset was based on an inter-annotator threshold. Clips with a higher variance than the inter-annotator threshold were excluded. The system was tested with the inter-annotator threshold at various values. The correlation performance of these experiments are shown in Figures <ref label='FigureInterannotatorFilteredPerformanceA'/> and <ref label='FigureInterannotatorFilteredPerformanceB'/>.</p>
 
-<figure short="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed." caption="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed. The left plot shows <i>agree</i> and the right plot shows <i>thinking</i>. Error bars of one standard deviation are shown." label="FigureInterannotatorFilteredPerformanceA">
+<figure short="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed." caption="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed. The left plot shows &lt;i&gt;agree&lt;/i&gt; and the right plot shows &lt;i&gt;thinking&lt;/i&gt;. Error bars of one standard deviation are shown." label="FigureInterannotatorFilteredPerformanceA">
 <graphic width="0.49">nvcregression/interannotator/clipfilterperf-agree.pdf</graphic>
 <graphic width="0.49">nvcregression/interannotator/clipfilterperf-thinking.pdf</graphic>
 </figure>
 
-<figure short="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed." caption="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed. The left plot shows <i>question</i> and the right plot shows <i>understand</i>. Error bars of one standard deviation are shown." label="FigureInterannotatorFilteredPerformanceB">
+<figure short="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed." caption="Correlation performance of automatic system after clips with a low inter-annotator agreement have been removed. The left plot shows &lt;i&gt;question&lt;/i&gt; and the right plot shows &lt;i&gt;understand&lt;/i&gt;. Error bars of one standard deviation are shown." label="FigureInterannotatorFilteredPerformanceB">
 <graphic width="0.49">nvcregression/interannotator/clipfilterperf-question.pdf</graphic>
 <graphic width="0.49">nvcregression/interannotator/clipfilterperf-understand.pdf</graphic>
 </figure>
@@ -229,13 +229,13 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 <tr><td>Classifier </td><td> Features </td><td> Balanced accuracy </td></tr>
 <tr><td>SVM</td><td> hand/arm/shoulder gestures </td><td> 50% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>SVM</td><td> prosody </td><td> 50% <cite ref='Bousmalis2011'/></td></tr>
-<tr><td>SVM</td><td> hand/arm/shoulder gestures <macro v=”/></td><td> prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
+<tr><td>SVM</td><td> hand/arm/shoulder gestures <macro v=''/></td><td> prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HMM</td><td> hand/arm/shoulder gestures </td><td> 43% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HMM</td><td> prosody </td><td> 51% <cite ref='Bousmalis2011'/></td></tr>
-<tr><td>HMM</td><td> hand/arm/shoulder gestures <macro v=”/></td><td> prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
+<tr><td>HMM</td><td> hand/arm/shoulder gestures <macro v=''/></td><td> prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HCRF</td><td> hand/arm/shoulder gestures </td><td> 51% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HCRF</td><td> prosody </td><td> 56% <cite ref='Bousmalis2011'/></td></tr>
-<tr><td>HCRF</td><td> hand/arm/shoulder gestures <macro v=”/></td><td> prosody </td><td> 64% <cite ref='Bousmalis2011'/></td></tr>
+<tr><td>HCRF</td><td> hand/arm/shoulder gestures <macro v=''/></td><td> prosody </td><td> 64% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>NuSVC</td><td> facial <i>geometric-h</i> </td><td> 50% </td></tr>
 <tr><td>NuSVC</td><td> facial <i>geometric-a</i> </td><td> 51% </td></tr>
 </table>
@@ -258,7 +258,7 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 </section>
 <section title="Classification of Mental States in the Mind Reading Corpus" label="SectionMindReading">
 
-<table short="Confusion matrix and classification accuracy of Mind Reading emotional states from el Kaliouby and Robinson <cite ref='ElKaliouby2004'/>, Figure 7." caption="Confusion matrix and classification accuracy of Mind Reading emotional states from el Kaliouby and Robinson <cite ref='ElKaliouby2004'/>, Figure 7. Chance prediction performance is 17%. Rows correspond to the true label, columns to predictions." label="TableMindReadingEK">
+<table short="Confusion matrix and classification accuracy of Mind Reading emotional states from el Kaliouby and Robinson &lt;cite ref='ElKaliouby2004'/&gt;, Figure 7." caption="Confusion matrix and classification accuracy of Mind Reading emotional states from el Kaliouby and Robinson &lt;cite ref='ElKaliouby2004'/&gt;, Figure 7. Chance prediction performance is 17%. Rows correspond to the true label, columns to predictions." label="TableMindReadingEK">
 <tr><td>mental state</td><td>agreeing</td><td>concentrating</td><td>disagreeing</td><td>interested</td><td>thinking</td><td>unsure</td><td>accuracy</td></tr>
 <tr><td>agreeing	</td><td><b>26</b>	</td><td>4	</td><td>0	</td><td>1	</td><td>0	</td><td>3	</td><td>76.5%</td></tr>
 <tr><td>concentrating	</td><td>1	</td><td><b>16</b>	</td><td>0	</td><td>0	</td><td>0	</td><td>1	</td><td>88.9%</td></tr>
@@ -269,7 +269,7 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 <tr><td>mean		</td><td>	</td><td>	</td><td>	</td><td>	</td><td>	</td><td>	</td><td><b>77.4</b>%</td></tr>
 </table>
 
-<table short="Confusion matrix and classification accuracy of <i>geometric-a</i> algorithmic features classified by NuSVC in one-against-all fashion." caption="Confusion matrix and classification accuracy of <i>geometric-a</i> algorithmic features classified by NuSVC in one-against-all fashion. Chance prediction performance is 17%. Rows correspond to the true label, columns to predictions." label="TableMindReadingAlg">
+<table short="Confusion matrix and classification accuracy of &lt;i&gt;geometric-a&lt;/i&gt; algorithmic features classified by NuSVC in one-against-all fashion." caption="Confusion matrix and classification accuracy of &lt;i&gt;geometric-a&lt;/i&gt; algorithmic features classified by NuSVC in one-against-all fashion. Chance prediction performance is 17%. Rows correspond to the true label, columns to predictions." label="TableMindReadingAlg">
 <tr><td>mental state</td><td>agreeing</td><td>concentrating</td><td>disagreeing</td><td>interested</td><td>thinking</td><td>unsure</td><td>accuracy</td></tr>
 <tr><td>agreeing	</td><td><b>18</b>	</td><td>1	</td><td>6	</td><td>3	</td><td>6	</td><td>2	</td><td>50.0%</td></tr>
 <tr><td>concentrating	</td><td>2	</td><td><b>2</b>	</td><td>1	</td><td>5	</td><td>3	</td><td>5	</td><td>11.1%</td></tr>
@@ -280,7 +280,7 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 <tr><td>mean		</td><td>	</td><td>	</td><td>	</td><td>	</td><td>	</td><td>	</td><td><b>36.3</b>%</td></tr>
 </table>
 
-<table short="Confusion matrix and classification accuracy of <i>geometric-h</i> heuristic features classified by NuSVC in one-against-all fashion." caption="Confusion matrix and classification accuracy of <i>geometric-h</i> heuristic features classified by NuSVC in one-against-all fashion. Chance prediction performance is 17%. Rows correspond to the true label, columns to predictions." label="TableMindReadingHeur">
+<table short="Confusion matrix and classification accuracy of &lt;i&gt;geometric-h&lt;/i&gt; heuristic features classified by NuSVC in one-against-all fashion." caption="Confusion matrix and classification accuracy of &lt;i&gt;geometric-h&lt;/i&gt; heuristic features classified by NuSVC in one-against-all fashion. Chance prediction performance is 17%. Rows correspond to the true label, columns to predictions." label="TableMindReadingHeur">
 <tr><td>mental state</td><td>agreeing</td><td>concentrating</td><td>disagreeing</td><td>interested</td><td>thinking</td><td>unsure</td><td>accuracy</td></tr>
 <tr><td>agreeing	</td><td><b>19</b>	</td><td>1	</td><td>6	</td><td>3	</td><td>4	</td><td>3	</td><td>52.8%</td></tr>
 <tr><td>concentrating	</td><td>1	</td><td><b>1</b>	</td><td>1	</td><td>4	</td><td>10	</td><td>1	</td><td>5.6%</td></tr>
@@ -291,7 +291,7 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 <tr><td>mean		</td><td>	</td><td>	</td><td>	</td><td>	</td><td>	</td><td>	</td><td><b>32.3</b>%</td></tr>
 </table>
 
-<figure short="Classification accuracy for Mind Reading mental states using various methods." caption="Classification accuracy for Mind Reading mental states using various methods. Blue bars correspond to <i>geometric-h</i> heuristic features classified by NuSVC in one-against-all fashion, orange bars correspond to <i>geometric-a</i> algorithmic features classified by NuSVC in one-against-all fashion and yellow bars correspond to el Kaliouby and Robinson <cite ref='ElKaliouby2004'/>. Chance prediction performance is 17%." label="FigureMindReadingPerfSummary">
+<figure short="Classification accuracy for Mind Reading mental states using various methods." caption="Classification accuracy for Mind Reading mental states using various methods. Blue bars correspond to &lt;i&gt;geometric-h&lt;/i&gt; heuristic features classified by NuSVC in one-against-all fashion, orange bars correspond to &lt;i&gt;geometric-a&lt;/i&gt; algorithmic features classified by NuSVC in one-against-all fashion and yellow bars correspond to el Kaliouby and Robinson &lt;cite ref='ElKaliouby2004'/&gt;. Chance prediction performance is 17%." label="FigureMindReadingPerfSummary">
 <graphic width="0.9">nvcregression/mindreadingperf.png</graphic>
 </figure>
 
