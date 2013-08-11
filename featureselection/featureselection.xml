@@ -45,7 +45,7 @@ Features are either assigned a relevance weight or a subset of relevant features
 Backward searching was thought to be preferable to forward searching because the interaction of features can be found and exploited. Forward search, particularly in the first few iterations, adds features without the benefit of other complimentary features. In contrast, a backward search allows irrelevant features to be eliminated while retaining features that contain complementary information. Also, it is possible to accelerate the backward search by removing more than one feature at each iteration, which reduces the computational cost.
 Some feature component subsets are more effective than others. Unfortunately, \ac{SBE} may not find a globally optimal feature subset. If all possible feature subsets are considered as a space, \ac{SBE} performs a gradient descent to minimise error. </p>
 
-\subsection{Method}
+<subsection title="Method">
 
 <p>Feature selection occurs within a person independent, cross validation framework. There are eight folds in cross validation, resulting in eight different partitionings of seen and unseen data sets. Feature selection is applied to the seen data of a specific cross validation fold, to determine a relevant feature subset. \ac{SVR} is then applied to the feature subset to produce a model suitable for prediction.</p>
 
@@ -88,10 +88,7 @@ eqn\end{gather}
 
 <p>These thresholds were based on an intuitive expectation that only a small subset of features are required for accurate recognition.</p>
 
-\begin{algorithm}
-\scriptsize 
-\lstset{language=Python}
-\begin{lstlisting}[frame=single]
+<algorithm caption="Each feature in the current feature set is tested. The features that cause the best performance are retained and the features that worsen performance are preferred for removal. The function \textit{TestPerf} is defined in Algorithm \ref{AlgTestSingleFeature}." label="AlgFeaturesToRemove">
 def EvaluateRemainingFeatures(mask, data, labels):
 
    #Determine how many components to remove, based on the mask
@@ -114,19 +111,12 @@ def EvaluateRemainingFeatures(mask, data, labels):
    scores.sort()
    scores.reverse()
    return scores[:numToRemove]
-\end{lstlisting}
-\normalsize
-\caption{Each feature in the current feature set is tested. The features that cause the best performance are retained and the features that worsen performance are preferred for removal. The function \textit{TestPerf} is defined in Algorithm \ref{AlgTestSingleFeature}.}
-\label{AlgFeaturesToRemove}
-\end{algorithm}
+</algorithm>
 
 <p>To find an appropriate subset of features for removal from the current feature set, the contribution of each feature component needs to be assessed. An overview of this process is shown in Algorithm \ref{AlgFeaturesToRemove}.
 Each feature component in the current feature set $\currentFeatureSet$ is selected as the test component and the performance impact of the removal of the component is evaluated. The features are then prioritised, with the feature components resulting in the lowest performance preferred for removal. This process becomes progressively faster as the current feature set becomes smaller.</p>
 
-\begin{algorithm}
-\scriptsize 
-\lstset{language=Python}
-\begin{lstlisting}[frame=single]
+<algorithm caption="Testing the performance of a test set of feature components. The regression can use any suitable method, but in this study $\nu$-SVR is used." label="AlgTestSingleFeature">
 def TestPerf(maskedData, labels):
 
    #Prepare cross validation sets
@@ -149,11 +139,7 @@ def TestPerf(maskedData, labels):
 
    #Calculate the overall correlation of predictions and test labels
    return np.corrcoef(allPredictions, allLabels)[0,1]
-\end{lstlisting}
-\normalsize
-\caption{Testing the performance of a test set of feature components. The regression can use any suitable method, but in this study $\nu$-SVR is used.}
-\label{AlgTestSingleFeature}
-\end{algorithm}
+</algorithm>
 
 <p>To test a specific feature component, regression models are trained and tested to assess the performance of the remaining feature components as shown in Algorithm \ref{AlgTestSingleFeature}.
 A temporary set $\tempFeatureSet$ is created which creates a copy of the current set $\currentFeatureSet$ except for the removal of the test component $i$:</p>
@@ -168,8 +154,8 @@ eqn\end{gather}
 
 <p>Because this process results in multiple sets which are used to create multiple \ac{NVC} models, it is not obvious which feature set to use and how many feature components are optimal. Simply selecting the peak performance when evaluating feature sets on unseen data violates the separation of seen and unseen data. For simplicity, this section uses the feature set $\currentFeatureSet^{unseen}$ having the peak performance for unseen test data to determine the number of feature components. It is likely that different \ac{NVC} signals require a specific set of geometric features to be effective. Therefore, feature selection is computed for a specific \ac{NVC} category and using a specific culture's annotation data. The processing of test set $\tempFeatureSet$ has been parallelized in this implementation, resulting in a speed increase. The next section uses the set $\currentFeatureSet^{seen}$ having the highest performance on seen training data only.</p>
 
-\subsection{Results}
-\label{SectionFeatureSelectionUnseenPeak}
+</subsection>
+<subsection title="Results" label="SectionFeatureSelectionUnseenPeak">
 
 <figure label="FigureShuffleGbrThink" short="The performance of the system progressively improves as backward feature selection eliminates poor features." caption="The performance of the system progressively improves as backward feature selection eliminates poor features. The upper line shows the seen data, which is used in the feature selection algorithm. The lower line shows the performance of the unseen data. The unseen data corresponds to subject 3008.">
 <graphic width="0.7">featureselection/shuffle-gbr-think/shufflefs-reverse-GBR-thinking-3008.pdf</graphic>
@@ -208,8 +194,8 @@ eqn\end{gather}
 <p>The optimal number of features is not known before feature selection begins. 
 The peak of unseen performance is 10 features, while the peak for seen performance is at approximately 125 features (see Figure \ref{FigureShuffleGbrThink}). A simple approach to determine the optimal number of features is to use the peak performance of unseen data. The performance for this method is shown in Table \ref{TableShuffledFoldsTerminationOnUnseenCheat}. However, this method violates the separation of training and unseen test data. Therefore, the results should not be directly compared to performance results in the previous chapter. The table shows the performance with the ideal termination of feature selection. This table implies that if terminated at an appropriate point, \ac{SBE} can result in a significant performance gain. </p>
 
-\subsection{Terminate \acs{SBE} Based on Seen Training Data}
-\label{SectionFeatureSelectionSeenPeak}
+</subsection>
+<subsection title="Terminate \acs{SBE} Based on Seen Training Data" label="SectionFeatureSelectionSeenPeak">
 
 <table short="Comparison of various approaches of termination of the feature selection process, along with the performance without feature selection from the previous chapter." caption="Comparison of various approaches of termination of the feature selection process, along with the performance without feature selection from the previous chapter. Termination using the unseen peak, as discussed in Section \ref{SectionFeatureSelectionUnseenPeak}, is the upper limit for performance based on \ac{SBE}. Termination based on peak seen performance (highlighted) is discussed in Section \ref{SectionFeatureSelectionSeenPeak}." label="TableShuffledFoldsTerminationOnSeenComparison">
 <tr><td>Area </td><td> NVC       </td><td> Terminate </td><td highlight="yes"> Terminate </td><td> Without  </td></tr>
@@ -232,8 +218,8 @@ The peak of unseen performance is 10 features, while the peak for seen performan
 
 <p>The number of features for termination of the feature selection process should be determined based on seen training data. This restriction represents a system which is less reliant on manual tuning of parameters. The peak training data performance can be used to determine when to terminate the feature selection process. This is likely to select a non-optimal number of features, but this approach respects seen and unseen data separation. The results may be compared to the regression system in the previous chapter. The performance of this method is shown in the highlighted column of Table \ref{TableShuffledFoldsTerminationOnSeenComparison}. Feature selection produces a large increase in performance over the method described in the previous chapter. Therefore, feature selection is beneficial for \textit{geometric-a} features because it removes irrelevant features and results in a feature subset that is more suited for the specific \ac{NVC}. The next section changes the feature selection folds to be person independent, rather than multi-person.</p>
 
-\subsection{Terminate \acs{SBE} on Person-Independent Folds}
-\label{SectionPersonIndependentFeatureSelection}
+</subsection>
+<subsection title="Terminate \acs{SBE} on Person-Independent Folds" caption="SectionPersonIndependentFeatureSelection">
 
 <p>Feature selection in this chapter uses multiple folds to determine the performance as features are eliminated (Algorithm \ref{AlgTestSingleFeature}). Previously, each fold contained multi-person data in which every subject in the seen data was present in each feature selection fold. This does not affect the overall system testing, which remains person independent throughout. This change may be advantageous because feature elimination would be based on a system that had been trained and tested on different subjects and may improve the generalisation. However, as feature selection is run iteratively, the system may begin to over fit the training data.</p>
 
@@ -258,6 +244,7 @@ The peak of unseen performance is 10 features, while the peak for seen performan
 
 <p>The performance of termination based on person independent folds is shown in Table \ref{TableFeatureSelectionPersonIndependent}. Although there are minor differences in performance for \ac{NVC} categories, the overall performance is relatively unchanged. Using either of these methods, feature selection finds a subset of features that are specialised in recognition of a specific \ac{NVC} signal. The next section provides a method for visualising the feature subset and an interpretation of the visualisations.</p>
 
+</subsection>
 </section>
 <section title="Visualising Selected Feature Subsets" label="SectionVisualiseFeatureSelection">
 
@@ -339,11 +326,11 @@ eqn\end{gather}
 <p>This removes features more slowly than in the previous section, which should help prevent useful features being eliminated. However, this results in the system being evaluated at more stages during the \ac{SBE} process.</p>
 
 <figure caption="Classification accuracy of two-fold cross validation on the Mind Reading corpus as features are eliminated by \ac{SBE}." label="FigureMindReadingPerfFeatureSbe">
-\includegraphics[width = 0.8 \columnwidth]{featureselection/mindreading-fs.pdf}
+<graphic width="0.8">featureselection/mindreading-fs.pdf</graphic>
 </figure>
 
 <figure caption="Classification accuracy of level-one-clip-out cross validation on the Mind Reading corpus as features are eliminated by \ac{SBE}, based on the previously selected feature sets." label="FigureMindReadingSbeTestPerf">
-\includegraphics[width = 0.8 \columnwidth]{featureselection/mindreading-test.pdf}
+<graphic width="0.8">featureselection/mindreading-test.pdf</graphic>
 </figure>
 
 <figure short="Performance of various classification methods based on the Mind Reading Corpus." caption="Performance of various classification methods based on the Mind Reading Corpus. Orange corresponds to algorithmic geometric features without feature selection (method described in Section \ref{SectionMindReading}). Green corresponds to the algorithmic geometric feature selection method proposed in this section, with 88 components. Yellow corresponds to el Kaliouby and Robinson \cite{ElKaliouby2004}. Chance prediction performance is 17%." label="FigureMindReadingAlgFs">
