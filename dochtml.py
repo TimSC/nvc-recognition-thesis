@@ -1,7 +1,7 @@
 
 import xml.etree.ElementTree as ET
 import HTMLParser, string
-
+import os, shutil
 
 def ReplaceMacros(el, defs, warn):
 
@@ -260,22 +260,46 @@ def ReplaceLabelRefs(el, labels, numbering, numberedEls, floatNums, floatLabels)
 
 ###############################################
 
-def ReplaceGraphics(el):
+def ReplaceGraphics(el, fili):
 	for elc in el:
-		ReplaceGraphics(elc)
+		ReplaceGraphics(elc, fili)
 		if elc.tag != "graphic":
 			continue
 		width = None
 		if 'width' in elc.attrib:
 			width = float(elc.attrib['width'])
-		elc.tag = "img"
-		elc.attrib = {}
-		elc.attrib['src'] = elc.text
-		elc.text = ""
-		if 'caption' in el.attrib:
-			elc.attrib['alt'] = el.attrib['caption']
-			elc.attrib['title'] = el.attrib['caption']
 
+		fibase, ext = os.path.splitext(elc.text)
+		pth = os.path.split(elc.text)
+		pth2 = os.path.split(fibase)
+		
+		if ext != ".pdf":
+
+			fina = "res/"+pth[-1]
+			shutil.copyfile(elc.text, fina)
+			assert fina not in fili
+			fili.add(fina)
+
+			elc.tag = "img"
+			elc.attrib = {}
+			elc.attrib['src'] = fina
+			elc.text = ""
+			if 'caption' in el.attrib:
+				elc.attrib['alt'] = el.attrib['caption']
+				elc.attrib['title'] = el.attrib['caption']
+		else:
+			fina = "res/"+pth2[-1]+".svg"
+			if not os.path.isfile(fina):
+				os.system("pdf2svg "+elc.text+" "+fina)
+
+			elc.tag = "object"
+			elc.attrib = {}
+			elc.attrib['data'] = fina
+			elc.attrib['type'] = "image/svg+xml"
+			elc.text = "SVG Graphic"
+			if 'caption' in el.attrib:
+				elc.attrib['alt'] = el.attrib['caption']
+				elc.attrib['title'] = el.attrib['caption']
 
 #############################################
 
@@ -370,7 +394,7 @@ if __name__ == "__main__":
 	numbering, numberedEls = ProcessSections(root2, labels)
 
 	ProcessReferences(root2) #Citations
-	ReplaceGraphics(root2)
+	ReplaceGraphics(root2, set())
 
 	floatNums = {}
 	floatLabels = {}
