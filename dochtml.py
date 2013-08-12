@@ -187,6 +187,7 @@ def FormatFloats(el, tag, floatNums, floatLabels):
 		elc.tag = "div"
 		elc.attrib = {}
 		elc.attrib['class'] = tag
+		elc.attrib['style'] = "padding:1px;border:1px solid #021a40;"
 
 		capt = ET.Element("p")
 		capt.text = ""
@@ -215,10 +216,24 @@ def ProcessReferencesRec(el, refs):
 	
 		ProcessReferencesRec(elc, refs)
 
-def ProcessReferences(root):
+def ProcessReferences(root, refXmlFi):
 	
 	refs = []
 	ProcessReferencesRec(root, refs)
+
+	#Parse xml
+	refMap = {}
+	refXml = ET.parse(refXmlFi)
+	for entry in refXml.getroot():
+		ref = entry.attrib['id']
+		ty, attrib = None, None
+		for entryTy in entry:
+			ty = entryTy.tag[25:] 
+			attrib = {}
+			for ch in entryTy:
+				attrib[ch.tag[25:]] = ch.text
+
+		refMap[ref] = (ty, attrib)
 
 	#Sort references into order
 	ordTags = []
@@ -234,8 +249,132 @@ def ProcessReferences(root):
 		for rnum, r in enumerate(refLiCl):
 			if rnum > 0:
 				elc.text += ", "
-			elc.text += ordTags.index(r)
+			elc.text += str(ordTags.index(r))
 		elc.text += "]"
+
+	#Generate references
+	sec = ET.Element("div")
+
+	title = ET.Element("h3")
+	title.text="References"
+	sec.append(title)
+
+	for i, r in enumerate(ordTags):
+		refEl = ET.Element("p")
+		refEl.text = str(i+1)+" "
+		if r in refMap:
+			refTy, refAttrib = refMap[r]
+			processed = False
+			if refTy == "article": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += unicode(refAttrib['title']+", ")
+				refEl.text += unicode(refAttrib['journal']+", ")
+
+				if 'volume' in refAttrib: refEl.text += unicode(refAttrib['volume'])
+				if 'issue' in refAttrib: refEl.text += "("+unicode(refAttrib['issue']+"):")
+				if 'volume' in refAttrib and 'issue' not in refAttrib: refEl.text += ", "
+				if 'page' in refAttrib: refEl.text += unicode(refAttrib['page']+", ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+
+			if refTy == "inproceedings" or refTy == "conference": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += unicode(refAttrib['title']+", ")
+				refEl.text += unicode("in "+refAttrib['booktitle']+", ")
+
+				if 'volume' in refAttrib: refEl.text += "volume "+unicode(refAttrib['volume'])
+				if 'page' in refAttrib: refEl.text += unicode(refAttrib['page']+", ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+			if refTy == "book": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += unicode(refAttrib['title']+". ")
+
+				if 'publisher' in refAttrib: refEl.text += unicode(refAttrib['publisher']+", ")
+				if 'edition' in refAttrib: refEl.text += unicode(refAttrib['edition']+" edition, ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+			if refTy == "inbook": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += unicode(refAttrib['title']+", ")
+				refEl.text += "chapter "+unicode(refAttrib['chapter']+". ")
+
+				if 'publisher' in refAttrib: refEl.text += unicode(refAttrib['publisher']+", ")
+				if 'address' in refAttrib: refEl.text += unicode(refAttrib['address']+", ")
+				if 'edition' in refAttrib: refEl.text += unicode(refAttrib['edition']+" edition, ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+			if refTy == "incollection": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += "title "+unicode(refAttrib['title']+". ")
+				refEl.text += "In "
+				if 'editor' in refAttrib: refEl.text += unicode(refAttrib['editor']+" editors, ")
+				refEl.text += unicode(refAttrib['booktitle']+", ")
+
+				if 'publisher' in refAttrib: refEl.text += unicode(refAttrib['publisher']+", ")
+				if 'address' in refAttrib: refEl.text += unicode(refAttrib['address']+", ")
+				if 'edition' in refAttrib: refEl.text += unicode(refAttrib['edition']+" edition, ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+			if refTy == "phdthesis": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += "title "+unicode(refAttrib['title']+". ")
+				refEl.text += "PhD thesis, "
+				if 'school' in refAttrib: refEl.text += unicode(refAttrib['school']+", ")
+				if 'address' in refAttrib: refEl.text += unicode(refAttrib['address']+", ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+			if refTy == "other": 
+				processed = True
+
+				if 'title' in refAttrib: refEl.text += unicode(refAttrib['title']+". ")
+				if 'url' in refAttrib: refEl.text += unicode(refAttrib['url'])
+
+			if refTy == "techreport": 
+				processed = True
+
+				if 'author' in refAttrib: refEl.text += unicode(refAttrib['author']+". ")
+				refEl.text += "title "+unicode(refAttrib['title']+". ")
+				refEl.text += "Technical report, "
+				if 'institution' in refAttrib: refEl.text += unicode(refAttrib['institution']+", ")
+				if 'address' in refAttrib: refEl.text += unicode(refAttrib['address']+", ")
+				if 'month' in refAttrib: refEl.text += unicode(refAttrib['month']+" ")
+				if 'year' in refAttrib: refEl.text += unicode(refAttrib['year']+". ")
+				if 'note' in refAttrib: refEl.text += unicode(refAttrib['note']+" ")
+				if 'doi' in refAttrib: refEl.text += unicode(refAttrib['doi']+" ")
+
+			if not processed:
+				refEl.text += r + " " + refTy
+		else:
+			refEl.text += r
+		sec.append(refEl)
+
+	root.append(sec)
+
 #############################################
 
 def ReplaceLabelRefs(el, labels, numbering, numberedEls, floatNums, floatLabels):
@@ -424,7 +563,7 @@ if __name__ == "__main__":
 	labels = {}
 	numbering, numberedEls = ProcessSections(root2, labels)
 
-	ProcessReferences(root2) #Citations
+	ProcessReferences(root2, "references.xml") #Citations
 	ReplaceGraphics(root2, set())
 
 	floatNums = {}
