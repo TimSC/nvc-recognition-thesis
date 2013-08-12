@@ -43,8 +43,8 @@ def ProcessSectionsRec(el, currentSection, depth, labels, numbering, numberedEls
 				labelTxt = "label" 
 			else:
 				labelTxt = "label"+str(labelNum)
-			if labelTxt in el.attrib:
-				labels[el.attrib[labelTxt]] = id(elc)
+			if labelTxt in elc.attrib:
+				labels[elc.attrib[labelTxt]] = elc
 				labelNum += 1
 			else:
 				labelNum = 0
@@ -54,10 +54,9 @@ def ProcessSectionsRec(el, currentSection, depth, labels, numbering, numberedEls
 
 		ProcessSectionsRec(elc, currentSection, depth+1, labels, numbering, numberedEls)
 
-def ProcessSections(root):
+def ProcessSections(root, labels):
 
 	currentSection = []
-	labels = {}
 	numbering = {}
 	numberedEls = {}
 
@@ -81,6 +80,8 @@ def ProcessSections(root):
 		title.text = titleTxt
 		el.insert(0, title)
 
+	return numbering, numberedEls
+
 #########################################
 
 def RemoveTempTagsRec(el):
@@ -98,6 +99,80 @@ def RemoveTempTagsRec(el):
 def RemoveTempTags(root):
 	
 	RemoveTempTagsRec(root)
+
+
+########################################
+
+def NumberFloating(el, tag, tagStack, labels, numbering, lastChapter, chapterCount, floatNums, floatLabels):
+
+	for elc in el:
+		currentSection = None
+		for s in tagStack:
+			if id(s) in numbering:
+				currentSection = numbering[id(s)]
+		if currentSection is not None and lastChapter != currentSection[0]:
+			lastChapter = currentSection[0]
+			chapterCount[0] = 0
+		if currentSection is None:
+			lastChapter = None
+			chapterCount[0] = 0
+
+		if tag == elc.tag:
+			chapterCount[0] += 1
+			print "label", tag, currentSection, chapterCount[0]
+			floatNums[id(elc)] = [currentSection[0], chapterCount[0]]
+
+			labelNum = 1
+			while labelNum > 0:
+				if labelNum == 1:
+					labelTxt = "label" 
+				else:
+					labelTxt = "label"+str(labelNum)
+				if labelTxt in elc.attrib:
+					floatLabels[elc.attrib[labelTxt]] = elc
+					labelNum += 1
+				else:
+					labelNum = 0
+
+		tmp = tagStack[:]
+		tmp.append(elc)
+		NumberFloating(elc, tag, tmp, labels, numbering, lastChapter, chapterCount, floatNums, floatLabels)
+
+def FormatFloats(el, tag, floatNums, floatLabels):
+
+	for elc in el:
+		FormatFloats(elc, tag, floatNums, floatLabels)
+
+		if tag != elc.tag:
+			continue
+
+		if elc.tag == "table":
+			replaceTable = ET.Element("table")
+			replaceTable.attrib['border'] = "2"
+			rows = []
+			for row in elc:
+				replaceTable.append(row)
+				rows.append(row)
+			elc.append(replaceTable)
+
+			for row in rows:
+				elc.remove(row)
+
+		elc.tag = "div"
+
+		capt = ET.Element("p")
+		capt.text = ""
+		if id(elc) in floatNums:
+			capt.text += string.capwords(tag)+" "
+			for i, se in enumerate(floatNums[id(elc)]):
+				if i > 0:
+					capt.text+="."
+				capt.text += str(se)
+			capt.text += " "
+			
+		if 'caption' in elc.attrib:	
+			capt.text += elc.attrib['caption']
+		elc.append(capt)
 
 #########################################
 
@@ -124,7 +199,38 @@ def ProcessReferences(root):
 				elc.text += ", "
 			elc.text += r
 		elc.text += "]"
+#############################################
 
+def ReplaceLabelRefs(el, labels, numbering, numberedEls, floatNums, floatLabels):
+
+	for elc in el:
+		ReplaceLabelRefs(elc, labels, numbering, numberedEls, floatNums, floatLabels)
+
+		if elc.tag != "ref":
+			continue
+
+		print elc.attrib
+		num = None
+		if elc.attrib['label'] in labels:
+			el = labels[elc.attrib['label']]
+			num = numbering[id(el)]
+		if elc.attrib['label'] in floatLabels:
+			el = floatLabels[elc.attrib['label']]
+			num = floatNums[id(el)]
+
+		if num is None:
+			print "Warning, label not found:", elc.attrib['label']
+		
+		elc.tag="span"
+		elc.attrib = {}
+		elc.text = ""
+		if num is not None:
+			for i, n in enumerate(num):
+				if i > 0:
+					elc.text += "."
+				elc.text += str(n)
+		else:
+			elc.text = "??"
 
 #########################################
 
@@ -138,9 +244,22 @@ if __name__ == "__main__":
 	for el in root2:
 		print el.tag
 
-	ProcessSections(root2)
+	labels = {}
+	numbering, numberedEls = ProcessSections(root2, labels)
 
-	ProcessReferences(root2)
+	ProcessReferences(root2) #Citations
+
+	floatNums = {}
+	floatLabels = {}
+	NumberFloating(root2, "table", [], labels, numbering, None, [None], floatNums, floatLabels)
+	NumberFloating(root2, "figure", [], labels, numbering, None, [None], floatNums, floatLabels)
+	NumberFloating(root2, "algorithm", [], labels, numbering, None, [None], floatNums, floatLabels)
+
+	FormatFloats(root2, "table", floatNums, floatLabels)
+	FormatFloats(root2, "figure", floatNums, floatLabels)
+	FormatFloats(root2, "algorithm", floatNums, floatLabels)
+
+	ReplaceLabelRefs(root2, labels, numbering, numberedEls, floatNums, floatLabels)
 
 	out = open("out.html","w")
 	out.write(ET.tostring(root2))
