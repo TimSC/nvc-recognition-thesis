@@ -277,6 +277,64 @@ def ReplaceGraphics(el):
 			elc.attrib['title'] = el.attrib['caption']
 
 
+#############################################
+
+def CollectFootnotesRec(el, foot):
+	for elc in el:
+		if elc.tag == "footnote":
+			foot.append((elc, elc.text))
+			elc.tag = "span"
+			elc.attrib['style'] = "font-size:xx-small; vertical-align:top;"
+			elc.text = str(len(foot))
+
+		CollectFootnotesRec(elc, foot)
+
+def CollectFootnotes(el):
+	foot = []	
+	CollectFootnotesRec(el, foot)
+	footnoteSec = ET.Element("div")
+
+	footnoteTitle = ET.Element("h3")
+	footnoteTitle.text="Footnotes"
+	footnoteSec.append(footnoteTitle)
+
+	for i, fo in enumerate(foot):
+		footEl = ET.Element("div")
+		footEl.text = str(i+1)+" "+fo[1]
+
+		fos = []
+		for ch in fo[0]:
+			footEl.append(ch)
+			fos.append(ch)
+		for f in fos:
+			fo[0].remove(f)
+
+		footnoteSec.append(footEl)
+
+	el.append(footnoteSec)
+
+
+#####################################
+
+
+def DefineAbbrevs(el, acro):
+	for elc in el:
+		DefineAbbrevs(elc, acro)
+
+		if elc.tag == "ac" or elc.tag == "acf" or elc.tag == "acl" or elc.tag == "acf":
+			tx = elc.text
+			full = False
+			if 'full' in elc.attrib and elc.attrib['full']=="yes":
+				full = True
+
+			elc.tag = "span"
+			elc.attrib = {}
+			if elc.text in acro:
+				elc.attrib['title'] = acro[elc.text]
+				elc.attrib['style'] = "cursor:help;border-bottom:1px dashed blue;"
+			else:
+				print "Abbreviation not defined:", elc.text
+
 #########################################
 
 if __name__ == "__main__":
@@ -292,6 +350,15 @@ if __name__ == "__main__":
 			if elc.tag == "k": k = elc.text
 			if elc.tag == "v": v = elc.text
 		defs[k] = v
+
+	acroXml = ET.parse('acronym.xml')
+	acro = {}
+	for el in acroXml.getroot():
+		k, v = None, None		
+		for elc in el:
+			if elc.tag == "k": k = elc.text
+			if elc.tag == "v": v = elc.text
+		acro[k] = v
 
 	root2 = PreprocessXml(root)
 	ReplaceMacros(root2, defs, set())
@@ -316,7 +383,8 @@ if __name__ == "__main__":
 	FormatFloats(root2, "algorithm", floatNums, floatLabels)
 
 	ReplaceLabelRefs(root2, labels, numbering, numberedEls, floatNums, floatLabels)
-
+	CollectFootnotes(root2)
+	DefineAbbrevs(root2, acro)
 
 	out = open("out.html","w")
 	out.write(ET.tostring(root2))
