@@ -219,13 +219,22 @@ def ProcessReferences(root):
 	
 	refs = []
 	ProcessReferencesRec(root, refs)
+
+	#Sort references into order
+	ordTags = []
 	for (elc, refLiCl) in refs:
-		elc.tag = "i"
+		for t in refLiCl:
+			if t in ordTags: continue
+			ordTags.append(t)
+	
+	#Subsitute tags
+	for (elc, refLiCl) in refs:
+		elc.tag = "span"
 		elc.text = "["
 		for rnum, r in enumerate(refLiCl):
 			if rnum > 0:
 				elc.text += ", "
-			elc.text += r
+			elc.text += ordTags.index(r)
 		elc.text += "]"
 #############################################
 
