@@ -231,13 +231,13 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 <tr><td>Classifier </td><td> Features </td><td> Balanced accuracy </td></tr>
 <tr><td>SVM</td><td> hand/arm/shoulder gestures </td><td> 50% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>SVM</td><td> prosody </td><td> 50% <cite ref='Bousmalis2011'/></td></tr>
-<tr><td>SVM</td><td> hand/arm/shoulder gestures <macro v=''/></td><td> prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
+<tr><td>SVM</td><td> hand/arm/shoulder gestures &amp; prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HMM</td><td> hand/arm/shoulder gestures </td><td> 43% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HMM</td><td> prosody </td><td> 51% <cite ref='Bousmalis2011'/></td></tr>
-<tr><td>HMM</td><td> hand/arm/shoulder gestures <macro v=''/></td><td> prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
+<tr><td>HMM</td><td> hand/arm/shoulder gestures &amp; prosody </td><td> 52% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HCRF</td><td> hand/arm/shoulder gestures </td><td> 51% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>HCRF</td><td> prosody </td><td> 56% <cite ref='Bousmalis2011'/></td></tr>
-<tr><td>HCRF</td><td> hand/arm/shoulder gestures <macro v=''/></td><td> prosody </td><td> 64% <cite ref='Bousmalis2011'/></td></tr>
+<tr><td>HCRF</td><td> hand/arm/shoulder gestures &amp; prosody </td><td> 64% <cite ref='Bousmalis2011'/></td></tr>
 <tr><td>NuSVC</td><td> facial <i>geometric-h</i> </td><td> 50% </td></tr>
 <tr><td>NuSVC</td><td> facial <i>geometric-a</i> </td><td> 51% </td></tr>
 </table>
