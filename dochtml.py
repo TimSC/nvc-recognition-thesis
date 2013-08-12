@@ -286,9 +286,9 @@ def ReplaceGraphics(el, fili):
 			w, h = im.size
 			h *= 640. / w
 			w = 640
-			if h > 480:
-				w *= 480. / h
-				h = 480
+			if h > 300:
+				w *= 300. / h
+				h = 300
 
 			elc.tag = "img"
 			elc.attrib = {}
@@ -308,9 +308,9 @@ def ReplaceGraphics(el, fili):
 			w, h = svg.props.width, svg.props.height
 			h *= 640. / w
 			w = 640
-			if h > 480:
-				w *= 480. / h
-				h = 480
+			if h > 300:
+				w *= 300. / h
+				h = 300
 
 			elc.tag = "object"
 			elc.attrib = {}
