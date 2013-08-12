@@ -2,6 +2,7 @@
 import xml.etree.ElementTree as ET
 import HTMLParser, string
 import os, shutil
+from PIL import Image
 
 def ReplaceMacros(el, defs, warn):
 
@@ -279,6 +280,9 @@ def ReplaceGraphics(el, fili):
 			shutil.copyfile(elc.text, fina)
 			assert fina not in fili
 			fili.add(fina)
+
+			im = Image.open(fina)
+			print im.size
 
 			elc.tag = "img"
 			elc.attrib = {}
