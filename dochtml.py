@@ -2,6 +2,26 @@
 import xml.etree.ElementTree as ET
 import HTMLParser, string
 
+
+def ReplaceMacros(el, defs, warn):
+
+	for elc in el:
+		ReplaceMacros(elc, defs, warn)
+
+		if elc.tag != "macro":
+			continue
+
+		val = elc.attrib['v']
+		elc.tag = "span"
+		elc.attrib = {}
+		if val in defs:
+			elc.text = defs[val]
+		else:
+			elc.text = "Undefined("+unicode(val)+")"
+			if val not in warn:
+				print "Undefined macro", val
+				warn.add(val)
+
 def PreprocessXml(root):
 	root2 = ET.Element("html")
 	
@@ -12,6 +32,7 @@ def PreprocessXml(root):
 				root2.append(el2)
 		else:
 			root2.append(el)
+
 	return root2
 
 ##################################################
@@ -35,7 +56,7 @@ def ProcessSectionsRec(el, currentSection, depth, labels, numbering, numberedEls
 		if numbered:
 			currentSection[depth] += 1
 
-		print elc.tag, depth, currentSection
+		#print elc.tag, depth, currentSection
 
 		labelNum = 1
 		while labelNum > 0:
@@ -119,7 +140,7 @@ def NumberFloating(el, tag, tagStack, labels, numbering, lastChapter, chapterCou
 
 		if tag == elc.tag:
 			chapterCount[0] += 1
-			print "label", tag, currentSection, chapterCount[0]
+			#print "label", tag, currentSection, chapterCount[0]
 			floatNums[id(elc)] = [currentSection[0], chapterCount[0]]
 
 			labelNum = 1
@@ -158,7 +179,12 @@ def FormatFloats(el, tag, floatNums, floatLabels):
 			for row in rows:
 				elc.remove(row)
 
+		captionTxt = None
+		if 'caption' in elc.attrib:	
+			captionTxt = elc.attrib['caption']
 		elc.tag = "div"
+		elc.attrib = {}
+		elc.attrib['class'] = tag
 
 		capt = ET.Element("p")
 		capt.text = ""
@@ -170,8 +196,8 @@ def FormatFloats(el, tag, floatNums, floatLabels):
 				capt.text += str(se)
 			capt.text += " "
 			
-		if 'caption' in elc.attrib:	
-			capt.text += elc.attrib['caption']
+		if captionTxt is not None:
+			capt.text += captionTxt
 		elc.append(capt)
 
 #########################################
@@ -209,7 +235,7 @@ def ReplaceLabelRefs(el, labels, numbering, numberedEls, floatNums, floatLabels)
 		if elc.tag != "ref":
 			continue
 
-		print elc.attrib
+		#print elc.attrib
 		num = None
 		if elc.attrib['label'] in labels:
 			el = labels[elc.attrib['label']]
@@ -232,6 +258,25 @@ def ReplaceLabelRefs(el, labels, numbering, numberedEls, floatNums, floatLabels)
 		else:
 			elc.text = "??"
 
+###############################################
+
+def ReplaceGraphics(el):
+	for elc in el:
+		ReplaceGraphics(elc)
+		if elc.tag != "graphic":
+			continue
+		width = None
+		if 'width' in elc.attrib:
+			width = float(elc.attrib['width'])
+		elc.tag = "img"
+		elc.attrib = {}
+		elc.attrib['src'] = elc.text
+		elc.text = ""
+		if 'caption' in el.attrib:
+			elc.attrib['alt'] = el.attrib['caption']
+			elc.attrib['title'] = el.attrib['caption']
+
+
 #########################################
 
 if __name__ == "__main__":
@@ -239,15 +284,26 @@ if __name__ == "__main__":
 	tree = ET.parse('thesis.xml')
 	root = tree.getroot()
 
-	root2 = PreprocessXml(root)
+	defsXml = ET.parse('defs.xml')
+	defs = {}
+	for el in defsXml.getroot():
+		k, v = None, None		
+		for elc in el:
+			if elc.tag == "k": k = elc.text
+			if elc.tag == "v": v = elc.text
+		defs[k] = v
 
-	for el in root2:
-		print el.tag
+	root2 = PreprocessXml(root)
+	ReplaceMacros(root2, defs, set())
+
+	#for el in root2:
+	#	print el.tag
 
 	labels = {}
 	numbering, numberedEls = ProcessSections(root2, labels)
 
 	ProcessReferences(root2) #Citations
+	ReplaceGraphics(root2)
 
 	floatNums = {}
 	floatLabels = {}
@@ -260,6 +316,7 @@ if __name__ == "__main__":
 	FormatFloats(root2, "algorithm", floatNums, floatLabels)
 
 	ReplaceLabelRefs(root2, labels, numbering, numberedEls, floatNums, floatLabels)
+
 
 	out = open("out.html","w")
 	out.write(ET.tostring(root2))

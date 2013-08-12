@@ -61,9 +61,9 @@ eqn\end{gather}
 <p>This method is similar to Ramseyer and Tschacher <cite ref='Ramseyer2008'/> but contains some important differences:</p>
 
 <ul>
- <macro v='item'/> This study uses face shape based on tracking rather than difference images of whole people. This makes our approach more effective in localising coupling behaviour to a specific area of the face. However, no other areas of the body are considered in this study.
- <macro v='item'/> This study uses recordings of a different person to test the null hypothesis correlations, rather than a shuffled window approach. However, this should not give rise to a significant difference in measured performance.
- <macro v='item'/> Ramseyer and Tschacher considered time offset signals, which enabled them to see which person is leading and which person is following in behaviour. This is not attempted in this study.
+<li>This study uses face shape based on tracking rather than difference images of whole people. This makes our approach more effective in localising coupling behaviour to a specific area of the face. However, no other areas of the body are considered in this study.</li>
+<li>This study uses recordings of a different person to test the null hypothesis correlations, rather than a shuffled window approach. However, this should not give rise to a significant difference in measured performance.</li>
+<li>Ramseyer and Tschacher considered time offset signals, which enabled them to see which person is leading and which person is following in behaviour. This is not attempted in this study.</li>
 </ul>
 
 <p>The current section only aims to show that interpersonal coordination exists for some areas of the face in dyadic informal conversation. Therefore, this study consider pairs of participant independently but without attempting to find consistent behaviour patterns that occur in all dyads. This approach of considering dyads independent and without finding corresponding behaviours across dyads was also used by Ramseyer and Tschacher <cite ref='Ramseyer2008'/>. 

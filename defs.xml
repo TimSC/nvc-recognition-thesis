@@ -91,30 +91,30 @@
 
 <!--Greek, lowercase, not bold-->
 
-<def><k>currentFeatureSet</k><v><b>\alpha</b></v></def> <!--Alpha-->
-<def><k>tempFeatureSet</k><v><b>\beta</b></v></def> <!--beta-->
+<def><k>currentFeatureSet</k><v><b>α</b></v></def> <!--Alpha-->
+<def><k>tempFeatureSet</k><v><b>β</b></v></def> <!--beta-->
 <!--Gamma-->
 <!--delta-->
-<def><k>framesInCorpus</k><v><b>\epsilon</b></v></def><!--epsilon-->
+<def><k>framesInCorpus</k><v><b>ε</b></v></def><!--epsilon-->
 <!--Zeta-->
-<def><k>numToRemoveInMask</k><v><b>\eta</b></v></def> <!--Eta-->
-<def><k>cultureSelect</k><v><b>\theta</b></v></def>
+<def><k>numToRemoveInMask</k><v><b>η</b></v></def> <!--Eta-->
+<def><k>cultureSelect</k><v><b>θ</b></v></def>
 <!--Iota-->
-<def><k>numTrackers</k><v><b>\kappa</b></v></def> <!--scalar kappa-->
-<def><k>lpbWord</k><v><b>\lambda</b></v></def>
-<def><k>modeFunc</k><v><b>\mu</b></v></def> <!--Mu-->
-<def><k>correlTemp</k><v><b>\nu</b></v></def><!--Nu-->
+<def><k>numTrackers</k><v><b>κ</b></v></def> <!--scalar kappa-->
+<def><k>lpbWord</k><v><b>λ</b></v></def>
+<def><k>modeFunc</k><v><b>μ</b></v></def> <!--Mu-->
+<def><k>correlTemp</k><v><b>ν</b></v></def><!--Nu-->
 <!--Xi-->
 <!--omicron-->
 <!--reserved Pi-->
-<def><k>correlFunc</k><v>\rho</v></def> <!--Rho-->
+<def><k>correlFunc</k><v>ρ</v></def> <!--Rho-->
 <!--reserved Sigma-->
-<def><k>projFunc</k><v>\tau</v></def> <!--Tau, projection function-->
+<def><k>projFunc</k><v>τ</v></def> <!--Tau, projection function-->
 <!--upsilon-->
-<def><k>varFunc</k><v>\phi</v></def><!--Phi-->
-<def><k>rawTrackingHomog</k><v><b>\chi</b></v></def><!--Chi-->
-<def><k>modelFitError</k><v>\psi</v></def><!--Psi-->
-<def><k>numFeaturesInMask</k><v>\omega</v></def> <!--Omega-->
+<def><k>varFunc</k><v>φ</v></def><!--Phi-->
+<def><k>rawTrackingHomog</k><v><b>χ</b></v></def><!--Chi-->
+<def><k>modelFitError</k><v>ψ</v></def><!--Psi-->
+<def><k>numFeaturesInMask</k><v>ω</v></def> <!--Omega-->
 
 <def><k>temporalFeatPlural</k><v>statistical features</v></def>
 <def><k>temporalFeatPluralStart</k><v>Statistical features</v></def>
@@ -122,5 +122,14 @@
 <def><k>temporalFeatSingle</k><v>statistical feature</v></def>
 <def><k>temporalFeatSingleStart</k><v>Statistical feature</v></def>
 <def><k>temporalFeatSingleCap</k><v>Statistical Feature</v></def>
+<def><k>male</k><v>♂</v></def>
+<def><k>female</k><v>♀</v></def>
+<def><k>pm</k><v>±</v></def>
+<def><k>alpha</k><v>α</v></def>
+<def><k>mu</k><v>μ</v></def>
+<def><k>nu</k><v>ν</v></def>
+<def><k>sigma</k><v>σ</v></def>
+<def><k>rho</k><v>ρ</v></def>
+<def><k>le</k><v>≤</v></def>
 </defs>
 
