@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 import HTMLParser, string
 import os, shutil
 from PIL import Image
+import rsvg
 
 def ReplaceMacros(el, defs, warn):
 
@@ -282,11 +283,18 @@ def ReplaceGraphics(el, fili):
 			fili.add(fina)
 
 			im = Image.open(fina)
-			print im.size
+			w, h = im.size
+			h *= 640. / w
+			w = 640
+			if h > 480:
+				w *= 480. / h
+				h = 480
 
 			elc.tag = "img"
 			elc.attrib = {}
 			elc.attrib['src'] = fina
+			elc.attrib['width'] = str(w)
+			elc.attrib['height'] = str(h)
 			elc.text = ""
 			if 'caption' in el.attrib:
 				elc.attrib['alt'] = el.attrib['caption']
@@ -296,10 +304,20 @@ def ReplaceGraphics(el, fili):
 			if not os.path.isfile(fina):
 				os.system("pdf2svg "+elc.text+" "+fina)
 
+			svg = rsvg.Handle(file=fina)
+			w, h = svg.props.width, svg.props.height
+			h *= 640. / w
+			w = 640
+			if h > 480:
+				w *= 480. / h
+				h = 480
+
 			elc.tag = "object"
 			elc.attrib = {}
 			elc.attrib['data'] = fina
 			elc.attrib['type'] = "image/svg+xml"
+			elc.attrib['width'] = str(w)
+			elc.attrib['height'] = str(h)
 			elc.text = "SVG Graphic"
 			if 'caption' in el.attrib:
 				elc.attrib['alt'] = el.attrib['caption']
