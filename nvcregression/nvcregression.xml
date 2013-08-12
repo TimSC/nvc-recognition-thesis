@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<doc>
 <chapter title="Multiple Culture NVC Regression" label="ChapterNvcRegression">
 <quote>
 Behaviour is the mirror in which everyone shows their image.<br/>
@@ -86,7 +87,7 @@ eqn \clipFeatureDigest^{\clipId}_i = \overline{\clipFeature^{\clipId}_i}, i \in 
 eqn \clipFeatureDigest^{\clipId}_{i+\numFeatures} = \varFunc(\clipFeature^{\clipId}_{i+\numFeatures}), i \in \{1...\numFeatures\}
 eqn\end{gather}
 
-<p>where $<macro v='varFunc('/><b>x</b>)$ is the statistical variance of vector $<b>x</b>$. This is analogous to temporal quadratic features in Section <ref label='SectionTemporalFeatures'/>, but instead of fitting a quadratic curve to a feature component, a Gaussian distribution is fitted to the frame samples. This decision was also based on the motion of eyes during thinking and the visualisation of feature space in Section <ref label='SectionVisualisingGaze'/>. The main finding of that work was that there is little consistency in eye movement except for overall spread and offset from the origin, which can easily be encoded by taking the mean and variance of features. Neither this digest vector, nor the previous approaches of clip or frame level comparisons consider the order of the frames. However, it would be incorrect to say that these features are not temporal, because they do encode feature variation in multiple consecutive frames. Methods that consider the order of the frames have already been discussed elsewhere (e.g. polynomial features and Akak{<macro v='i'/>}n and Sankur's work on <ac>HMM</ac>s and <ac>CRF</ac>s in Section <ref label='SectionHmm'/>). Based on these findings, the claim that the frame order is a panacea for all <ac>NVC</ac> and emotion recognition problems cannot be justified.</p>
+<p>where $<macro v='varFunc('/><b>x</b>)$ is the statistical variance of vector $<b>x</b>$. This is analogous to temporal quadratic features in Section <ref label='SectionTemporalFeatures'/>, but instead of fitting a quadratic curve to a feature component, a Gaussian distribution is fitted to the frame samples. This decision was also based on the motion of eyes during thinking and the visualisation of feature space in Section <ref label='SectionVisualisingGaze'/>. The main finding of that work was that there is little consistency in eye movement except for overall spread and offset from the origin, which can easily be encoded by taking the mean and variance of features. Neither this digest vector, nor the previous approaches of clip or frame level comparisons consider the order of the frames. However, it would be incorrect to say that these features are not temporal, because they do encode feature variation in multiple consecutive frames. Methods that consider the order of the frames have already been discussed elsewhere (e.g. polynomial features and Akakın and Sankur's work on <ac>HMM</ac>s and <ac>CRF</ac>s in Section <ref label='SectionHmm'/>). Based on these findings, the claim that the frame order is a panacea for all <ac>NVC</ac> and emotion recognition problems cannot be justified.</p>
 
 </subsection>
 <subsection title="Support Vector Regression and Performance Evaluation" label="SectionRegressionAndPerformanceEvaluation">
@@ -190,7 +191,7 @@ Current practice is to consider automatic <ac>NVC</ac> and emotion recognition s
 
 <p>The performance is sensitive to the $<macro v='nu'/>$-SVC cost parameter $C$. The parameter was determined for each fold of the training data independently. Parameter search of cost values of $\{10^{-2},$ $10^{-1},$ $10^{0},$ $10^{1},$ $10^{2}\}$ was performed on the training data on a leave one sample out basis. The cost parameter with the best <ac>AUC</ac> performance was used to train a final classifier on the entire set of train data.</p>
 
-<p>The performance of the system is shown in Table <ref label='TableDigestMethodOnClassification'/>. The changes to <macro v='featureGeneration'/> and classification result in a performance increase from 75% to 85.4%. This performance is an improvement on the previous state of the art, which was the overall performance of the <ac>HMM</ac> approach proposed by Akak{<macro v='i'/>}n and Sankur <cite ref='Akakin2011'/>. There are some <ac>NVC</ac> signals, such as <i>agree</i> and <i>understand</i>, for which <ac>HMM</ac> classification is still more effective than the method proposed here. The overall improvement in performance shows that for some <ac>NVC</ac> signals, appropriate <macro v='featureGeneration'/> can effectively encode temporal variations. In some cases, this can exceed the performance of some temporal classifier methods.</p>
+<p>The performance of the system is shown in Table <ref label='TableDigestMethodOnClassification'/>. The changes to <macro v='featureGeneration'/> and classification result in a performance increase from 75% to 85.4%. This performance is an improvement on the previous state of the art, which was the overall performance of the <ac>HMM</ac> approach proposed by Akakın and Sankur <cite ref='Akakin2011'/>. There are some <ac>NVC</ac> signals, such as <i>agree</i> and <i>understand</i>, for which <ac>HMM</ac> classification is still more effective than the method proposed here. The overall improvement in performance shows that for some <ac>NVC</ac> signals, appropriate <macro v='featureGeneration'/> can effectively encode temporal variations. In some cases, this can exceed the performance of some temporal classifier methods.</p>
 
 <table caption="&lt;ac&gt;AUC&lt;/ac&gt; performance, expressed as percentages. Testing is on a multi-person basis. The highlighted row corresponds to the method described in this chapter." label="TableDigestMethodOnClassification">
 <tr><td>Method </td><td> Agree </td><td> Question </td><td> Thinking </td><td> Understand </td><td> Average </td></tr>
@@ -329,3 +330,5 @@ There are a number of areas in which the current work could be improved. If natu
 
 </section>
 </chapter>
+</doc>
+

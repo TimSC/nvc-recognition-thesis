@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<doc>
 <chapter title="Multiple Culture Annotation" label="ChapterAnnotation">
 <quote>
 There is no truth. There is only perception.<br/>
@@ -217,4 +218,4 @@ However, discrete label filtering method is not useful in subjective tasks, such
 <p>The next chapter uses this <macro v='continuous'/> annotation data to approach the <ac>NVC</ac> recognition problem by cross cultural regression.</p>
 </section>
 </chapter>
-
+</doc>

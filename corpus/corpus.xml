@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<doc>
 <chapter title="The LILiR TwoTalk Corpus and Annotation Data" label="ChapterCorpus">
 <quote>
 Verbal and nonverbal activity is a unified whole, and theory and methodology should be organized or created to treat it as such.<br/>
@@ -397,4 +398,4 @@ This use of culturally distinct annotators is discussed in Chapter <ref label='C
 The next chapter describes an automatic <ac>NVC</ac> classification system based on the data collected in this chapter.</p>
 </section>
 </chapter>
-
+</doc>

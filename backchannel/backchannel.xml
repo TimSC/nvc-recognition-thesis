@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<doc>
 <chapter title="Interpersonal Coordination in NVC" label="ChapterBackchannel" label2="SectionBackchannelIntro">
 <quote>
 The meeting of two personalities is like the contact of two chemical substances: if there is any reaction, both are transformed.<br/>
@@ -172,7 +173,7 @@ Facial shape in natural conversations exhibits interpersonal coordination. Given
 
 <p>The previous chapter has investigated automatic methods to classify <ac>NVC</ac> based on visual facial information. However, the corpus has two subjects interacting. The annotated subject is designated as the “sender” and the other conversation participant as the “receiver”. 
 The sender expresses in the forward channel and perceives the backchannel. The receiver expresses in the backchannel and perceives the forward channel. 
-The previous section has discussed coupling of facial behaviour in natural conversation. This raises the possibility that a sender's <ac>NVC</ac> signals may be inferred based on the receiver's visual information. Figure <ref label='BackChannelFigure'/> shows the experimental arrangement to detect <ac>NVC</ac> using backchannel signals. The videos of <ac>NVC</ac> receiver participants are tracked and features extracted using <i>geometric-a</i> features, as described in Section <ref label='SectionGenerateAlgorithmic'/>. A classifier is trained on the sender <ac>NVC</ac> labels and the receiver facial feature data. Testing is performed on a person independent basis, with only clear <ac>NVC</ac> clips used in the test $<macro v='clearClipSet'/>^{clear}_{<macro v='nvcCategory'/>}$ (see Section <ref label='SectionClearExamples'/>) based on annotation ratings of the <ac>NVC</ac> sender. %Test features are used to train an <ac>SVM</ac> classifier.</p>
+The previous section has discussed coupling of facial behaviour in natural conversation. This raises the possibility that a sender's <ac>NVC</ac> signals may be inferred based on the receiver's visual information. Figure <ref label='BackChannelFigure'/> shows the experimental arrangement to detect <ac>NVC</ac> using backchannel signals. The videos of <ac>NVC</ac> receiver participants are tracked and features extracted using <i>geometric-a</i> features, as described in Section <ref label='SectionGenerateAlgorithmic'/>. A classifier is trained on the sender <ac>NVC</ac> labels and the receiver facial feature data. Testing is performed on a person independent basis, with only clear <ac>NVC</ac> clips used in the test $<macro v='clearClipSet'/>^{clear}_{<macro v='nvcCategory'/>}$ (see Section <ref label='SectionClearExamples'/>) based on annotation ratings of the <ac>NVC</ac> sender.</p>
 
 <figure label="BackChannelFigure" caption="Automatic &lt;ac&gt;NVC&lt;/ac&gt; classification can operate on either the forward or backchannel information.">
 <graphic width="0.4">backchannel/figureforwardbackchannel.pdf</graphic>
@@ -212,4 +213,4 @@ These observations have the same general pattern as the forward channel performa
 
 </section>
 </chapter>
-
+</doc>

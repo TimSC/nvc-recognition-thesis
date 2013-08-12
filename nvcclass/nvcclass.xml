@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<doc>
 <chapter short="Automatic Classification of NVC" title="Automatic Classification of NVC in Spontaneous Conversation" label="ChapterClassification" label2="SectionClassificationIntro">
 <quote>
 Computers are useless. They can only give you answers.<br/>
@@ -536,4 +537,5 @@ However the method does not encode temporal information in the classifier model.
 The next chapter attempts to create an <ac>NVC</ac> recognition system based on communication backchannel, which loosely speaking is a “<ac>NVC</ac> listener's” response to a communication event.</p>
 </section>
 </chapter>
+</doc>
 
